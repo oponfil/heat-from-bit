@@ -1,0 +1,291 @@
+% !TEX root = heat_from_bit_en.tex
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\Sref}[1]{\hyperref[#1]{\S\ref{#1}}}
+\usepackage{comfortaa}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[x11names]{xcolor}
+\usepackage{indentfirst}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{makecell}
+\usepackage{colortbl}
+\arrayrulecolor{white}
+
+\makeatletter
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\renewcommand{\@makefnmark}{\mbox{\textsuperscript{\textcolor{white}{\thefootnote}}}}
+\renewcommand{\@makefntext}[1]{\parindent 1.8em\noindent\textsuperscript{\textcolor{white}{\thefootnote}}\ \textcolor{white}{#1}}
+\renewcommand{\footnoterule}{\kern-3pt\color{white}\hrule width 0.4\textwidth height 0.4pt\kern 2.6pt}
+\renewcommand{\ps@plain}{%
+  \let\@oddhead\@empty
+  \let\@evenhead\@empty
+  \def\@oddfoot{\hfill\textcolor{white}{\thepage}\hfill}%
+  \let\@evenfoot\@oddfoot
+}
+\makeatother
+
+\pagestyle{plain}
+
+\title{\textbf{Heat from Bit: The Thermodynamic Price of Objective Collapse}}
+\author{%
+  Oleg Ponfilenok\\[0.35em]%
+  {\normalsize Independent researcher; \href{mailto:ponfil@gmail.com}{ponfil@gmail.com}}%
+}
+\date{}
+
+\begin{document}
+
+\pagecolor{black}
+\color{white}
+
+\maketitle
+
+\begin{abstract}
+We propose the hypothesis that any mechanism of \emph{objective} collapse must pay a thermodynamic price of $k\ln 2$ per destroyed bit of coherence \emph{in the pointer basis of the act}---as heat $\Delta Q = kT\ln 2$ in an environment at temperature~$T$. Test: calorimetry of heating upon absorption of a heralded single-photon qubit---$|{+}\rangle$ versus the control $I/2$.
+\end{abstract}
+
+\noindent\textbf{Keywords:} objective~collapse; pointer~state; quantum~Darwinism; Landauer's~principle; heat~from~bit; entropy~collection
+
+%%% ===================================================================
+\section{Introduction}\label{sec:intro}
+%%% ===================================================================
+
+The idea of \emph{objective} collapse---making state reduction a physical process rather than an epistemic postulate of measurement---forms a distinct research program alongside standard quantum mechanics, where the apparent collapse is explained by unitary decoherence and correlations with the environment. The early line of Karolyh\'azy~\cite{karolyhazy1966} linked the demise of superpositions to spacetime uncertainty; GRW and CSL~\cite{grw1986,pearle1989} introduced spontaneous localization; Diosi--Penrose models~\cite{diosi1989,penrose1996}---gravitational instability of macroscopic superpositions; in other models: crossing a scrambling threshold~\cite{ponfilenok2026threshold}, branch-dependent dephasing of proper time~\cite{ponfilenok2026bdpt}. Review and status---Bassi et al.~\cite{bassi2013}: the direction is actively developed and experimentally constrained, but remains marginal relative to orthodox quantum theory; decisive confirmation or final refutation is still lacking. The present work does not choose a criterion for ``when,'' but asks about the thermodynamic price of any such act.
+
+Objective collapse introduces a fundamentally irreversible element of dynamics, distinguishing the preferred direction of time from reversible unitary evolution. However, such irreversibility by itself is not equivalent to violation of continuous time-translation symmetry, with which Noether's theorem associates energy conservation. Therefore the energetic footprint of collapse depends on the specific non-unitary dynamics; the present work proposes a hypothesis about its thermodynamic nature.
+
+Landauer's principle~\cite{landauer1961} links the erasure of \emph{classical} information to minimum dissipation $Q \ge kT\ln 2$. The price sits on logically irreversible compression of phase volume (many$\to$one)---a consequence of the second law~\cite{bennett1982,sagawa2008}. Under decoherence the environment selects a \emph{pointer basis}---a set of robust outcomes $|i\rangle$, proliferated in the environment (einselection; quantum Darwinism~\cite{zurek2009}). The pointer basis defines the set of \emph{classically admissible} (incoherent) states---diagonal mixtures over $|i\rangle$. The \emph{relative entropy of coherence}~\cite{baumgratz2014} $C_r(\rho)=\min_{\sigma\in\mathcal{I}} S(\rho\|\sigma)$ measures how far $\rho$ falls short of such a mixture; for the pointer basis the minimum is attained at $\rho_{\mathrm{diag}}$ and $C_r(\rho)=S(\rho_{\mathrm{diag}})-S(\rho)$. For pure $|{+}\rangle_{\mathrm{ptr}}$ $S(\rho)=0$, but $C_r=k\ln 2$---full which-path coherence; for $I/2_{\mathrm{ptr}}$ $S(\rho)=k\ln 2$, but $C_r=0$---the same pointer statistics without phase, nothing to erase. Under \emph{unitary} decoherence $|{+}\rangle \to I/2$ $S(\rho_S)$ of the subsystem grows to $k\ln 2$, but the entropy of the whole is zero: the phase goes into correlations and is recoverable in principle (Loschmidt echo~\cite{gorin2006,goussev2012}). Under \emph{objective} collapse the pointer outcome is fixed irreversibly, $H=S_{\mathrm{coh}}=C_r$ in the pointer basis---a thermodynamically active quantity; according to the hypothesis of the present work its jump materializes as heat. Hormoz~\cite{hormoz2013} shows the necessity of an entropic price for collapse in a ratchet model; Heat from Bit quantifies the price for objective fixation of a pointer outcome without an explicit demon.
+
+Wheeler formulated ``It from Bit''~\cite{wheeler1989}: physical reality (``it'') arises from acts of distinguishing pointer outcomes. \emph{Heat from Bit}---the same parallel in thermodynamics: $C_r(\rho)$ in the pointer basis is the ``bit''; its irreversible jump is the ``it,'' materializing as heat.
+
+We propose an experimental test (\S\,\ref{sec:experiment}): calorimetry of a \emph{heralded} single-photon qubit in a Mach--Zehnder (MZ) interferometer (heralded MZ)---$|{+}\rangle_{\mathrm{ptr}}$ yields $kT\ln 2$ per act, the classical mixture $I/2_{\mathrm{ptr}}$---none.
+
+%%% ===================================================================
+\section{Intuition}\label{sec:intuition}
+%%% ===================================================================
+
+The idea of Heat from Bit grew out of a simple thought experiment in which \emph{one} photon is absorbed by an anisotropic absorber in the polarization basis that defines the pointer basis of the act. The basis is $\{|0\rangle,|1\rangle\}$ of linear polarization ($|0\rangle$---horizontal, $|1\rangle$---vertical): which of these outcomes will be irreversibly fixed upon absorption---that is, upon detection?
+
+\textbf{Case~A (definite polarization).} A single-photon state $|0\rangle$---an eigenstate of the pointer basis, aligned with the polarizer axis. Coherence $S_{\mathrm{coh}}=0$. The photon is absorbed, the absorber receives energy $E_\gamma$---ordinary first-law heating; the alternative pointer outcome $|1\rangle$ is absent in the pre-act state, nothing to erase. Nothing changes upon an act of objective collapse.
+
+\textbf{Case~B (superposition of pointer outcomes).} The same single-photon protocol, but the photon is prepared in
+\begin{equation}
+|{+}\rangle_{\mathrm{ptr}} = \frac{|0\rangle + |1\rangle}{\sqrt{2}}
+\end{equation}
+in the polarizer's pointer basis: $S_{\mathrm{coh}}=\ln 2$. Absorption transfers the same $E_\gamma$; the difference lies in the pre-act state, not in the photon energy.
+
+\emph{Step~1 (absorption).} Regardless of preparation, the act of absorption transfers $E_\gamma$ to the absorber; there is as yet no objective collapse at this stage.
+
+\emph{Step~2 (decoherence).} Under \emph{unitary} evolution, coherence in the pointer basis $S_{\mathrm{coh}}$ goes into the internal degrees of freedom of the absorber and environment---into entanglement, recoverable in principle (echo, reversible cycle). The environment already interacts with the photon and carries information about the pointer outcome (here---polarization) into the \emph{internal memory} of the surroundings. Entanglement of the absorber and environment with $|0\rangle$ and $|1\rangle$ \emph{is} that memory---the alternative is not destroyed but encoded in correlations; under unitary evolution it is preserved, there is no erasure, global entropy does not grow.
+
+\emph{Step~3 (objective collapse).} Objective collapse can be understood as \emph{clearing} internal memory: degrees of freedom that carried coherence and entanglement disappear irreversibly---a register-erasure procedure, not a reversible transfer of phase. The pointer outcome is fixed; there is no longer an ``internal'' quantum state storing the alternative $|0\rangle$ vs $|1\rangle$, $S_{\mathrm{coh}}$ vanishes. This is an act of erasing one bit of pointer outcome: from the superposition $|{+}\rangle$ irreversibly one outcome $|0\rangle$ or $|1\rangle$ remains. We propose the hypothesis that the fundamental destruction of this information obeys a thermodynamic constraint analogous to Landauer's principle~\cite{landauer1961}: the environment of the act---the reservoir where pointer modes and their correlations with the absorber lived---must receive additional heat
+\begin{equation}
+\Delta Q = kT\ln 2
+\end{equation}
+\emph{for each} objectively fixed single-photon act ($|{+}\rangle_{\mathrm{ptr}}\to|0\rangle$ or $|1\rangle$), above ordinary heating by $E_\gamma$. The excess of case~B over~A at equal $E_\gamma$---the prediction of Heat from Bit.
+
+\textbf{Case~C (classical mixture).} The same protocol, but the photon is prepared as $I/2$ in the pointer basis:
+\begin{equation}
+I/2 = \frac{|0\rangle\langle 0| + |1\rangle\langle 1|}{2}
+\end{equation}
+---a diagonal mixture of $|0\rangle$ and $|1\rangle$ without phase correlations: $S_{\mathrm{coh}}=0$. This is not a superposition of pointer outcomes but a statistical record: the outcome is already ``measured'' at the level of the pre-act state, only classical uncertainty remains as to \emph{which} of them was realized. In the act of absorption the environment does not \emph{erase} an alternative bit but merely \emph{copies} an already existing classical record; copying classical information is energetically free. There is neither decoherence nor objective collapse in the act.
+
+%%% ===================================================================
+\section{Pointer basis and coherence entropy}\label{sec:pointer}
+%%% ===================================================================
+
+Upon interaction with the environment the system decoheres into a \emph{pointer basis} $\{|i\rangle\}$---robust outcomes proliferated in the environment (einselection; quantum Darwinism~\cite{zurek2009}). A classical record is a specific pointer outcome $|i\rangle$. $|{+}\rangle$ and $I/2$ coincide in $\rho_{\mathrm{ptr}}$ and $\langle\hat{H}\rangle$; a bolometer sees only the diagonal in the pointer basis. The tariff is by coherence in the pointer basis \emph{of the act}, not by $S(\rho)$ abstractly.
+
+
+\textbf{Coherence in the pointer basis.} In the resource theory of coherence~\cite{baumgratz2014,streltsov2017}:
+\begin{equation}
+S_{\mathrm{coh}}(\rho) = S(\rho_{\mathrm{ptr}}) - S(\rho),
+\end{equation}
+where $\rho_{\mathrm{ptr}}$ is the diagonal of $\rho$ in the pointer basis of the act. For $|{+}\rangle$ $S_{\mathrm{coh}}=\ln 2$, for $I/2$---zero; this is the \emph{relative entropy of coherence} $C_r(\rho)$~\cite{baumgratz2014,streltsov2017} relative to the same basis. Kammerlander and Anders~\cite{kammerlander2016} show that the thermodynamics of \emph{projection} into a basis (dephasing, non-selective measurement) is nontrivial only when there is coherence in that basis; for diagonal mixtures $\Delta S=0$. In an optimal process for $|{+}\rangle$ from such projection one can extract work $\langle W\rangle=kT\ln 2$. Heat from Bit transfers this distinguishability to the pointer basis of the act and postulates dissipation linked to $S_{\mathrm{coh}}$ upon objective fixation of the outcome.
+
+\textbf{Tariff entropy $H$.} Let $H$ denote the \emph{tariff entropy} of the pre-act state in the pointer basis \emph{of the act}; $S(\rho)$, $S_{\mathrm{coh}}$, and $H$ are in \emph{nats}:
+\begin{equation}
+H(\rho) = S_{\mathrm{coh}}(\rho).
+\end{equation}
+$H$ is neither the full $S(\rho)$ nor the classical $-\sum_i p_i\ln p_i$, but precisely the coherence in the pointer basis destroyed upon irreversible fixation of the outcome; it sets the thermodynamic price.
+Diagonal $\rho_{\mathrm{ptr}}$ ($I/2$): $H=0$; pure superposition $|{+}\rangle_{\mathrm{ptr}}$: $H=\ln 2$.
+
+\textbf{Number of bits}:
+\begin{equation}
+N_{\mathrm{bit}}(\rho) = H(\rho) / \ln 2.
+\end{equation}
+
+\textbf{Coherent states of the field} ($\hat a|\alpha\rangle=\alpha|\alpha\rangle$) are eigenstates of the operator $\hat a$~\cite{glauber1963}; they define the classical amplitude of a mode and a CW laser beam. The term ``coherent'' here does not mean $S_{\mathrm{coh}}$ in the pointer basis: in $|\alpha\rangle$ there is no superposition of pointer outcomes, only Poisson statistics, $H=0$; a ``photon'' of a coherent beam has no separate pre-act $\rho$. ``Angle $45^\circ$'' of a CW laser does not reproduce case~B from \Sref{sec:intuition}:
+\begin{equation}
+|\alpha\rangle_{45^\circ} = |\alpha/\sqrt{2}\rangle_{0}\,|\mathrm{i}\alpha/\sqrt{2}\rangle_{1},
+\end{equation}
+not a flux of $|{+}\rangle_{\mathrm{ptr}}$. For a pure pre-act $\rho=|\psi\rangle\langle\psi|$, $|\psi\rangle=\sum_i c_i|i\rangle$, we have $p_i=|c_i|^2$ and $H=-\sum_i p_i\ln p_i$ (then $S(\rho)=0$). In the general case $H=S(\rho_{\mathrm{ptr}})-S(\rho)$; for mixed $I/2$ this is $H=0$, although $-\sum_i p_i\ln p_i=\ln 2$.
+
+%%% ===================================================================
+\section{Thermodynamics of objective collapse}\label{sec:thermo}
+%%% ===================================================================
+
+The tariff $H$ (\Sref{sec:pointer}) is a definition ($H=S_{\mathrm{coh}}$ in the pointer basis of the act), not an assumption of the model.
+
+Under \emph{unitary} dephasing $S(\rho_{\mathrm{ptr}})$ does not change, the growth of $S(\rho)$ of the subsystem is the decrease of $S_{\mathrm{coh}}$ (\Sref{sec:pointer}); an isolated subsystem under unitary $\pi/2$ does not change $S(\rho)$ (pure remains pure), and a reversible cycle $\pi/2\to-\pi/2$ restores the state; tariff $H$ is not activated. Heat does \emph{not} follow from the growth of $S(\rho)$ of the subsystem and does not accompany unitary ``encryption'' of the pointer-basis phase into correlations with the environment.
+
+\textbf{Postulate (Heat from Bit).} Testable hypothesis of the work (\Sref{sec:experiment}): under \emph{objective} collapse with $H>0$ the jump of the tariff is identified with thermodynamic entropy of the reservoir $S_{\mathrm{th}}=kH$ and heat $\Delta Q=T\Delta S_{\mathrm{th}}=kT\Delta H$ in the environment at temperature~$T$; the pointer outcome is fixed irreversibly. Average over acts
+\begin{equation}
+\langle Q\rangle = kT\,H = kT\,C_r(\rho).
+\end{equation}
+For a given $H$ the distribution of $Q_i$ does \emph{not} follow from this (for example, $Q_i \equiv kT H$ gives the same $\langle Q\rangle$). For a \emph{pure} pre-act $|\psi\rangle=\sum_i c_i|i\rangle$ ($S(\rho)=0$, $p_i=|c_i|^2$) the model \emph{additionally} adopts a per-trajectory tariff
+\begin{equation}
+\boxed{Q_i = kT\ln(1/p_i)}
+\end{equation}
+---informational ``surprise'' of outcome~$i$ (consistent with the average via $H=-\sum p_i\ln p_i$): a rare outcome ``erases'' more alternative probability mass. Then $\Delta S_{\mathrm{th},i}=k\ln(1/p_i)$,
+\begin{equation}
+\langle Q\rangle = \sum_i p_i\, Q_i = kT H, \qquad \mathrm{Var}(Q) = (kT)^2\,\mathrm{Var}(\ln p_i).
+\end{equation}
+For a mixed pre-act state ($H=0$, e.g.\ $I/2$) the per-act tariff is not activated: $\langle Q\rangle=0$. At equal $p_i=1/n$ all outcomes are equivalent: $Q_i = kT\ln n$; for binary $|{+}\rangle$ ($p_i=\tfrac12$) this is $\Delta Q = kT\ln 2$, $\Delta H=\ln 2$ and $\Delta S_{\mathrm{th}} = k\ln 2$ ($\Delta N_{\mathrm{bit}}=1$). Example $p_0=0{,}9$, $p_1=0{,}1$: an act with outcome~0 releases $kT\ln(10/9)\approx 0{,}11\,kT$, with outcome~1---$kT\ln 10\approx 2{,}3\,kT$; the average $\approx 0{,}33\,kT = kT\,h_2(0{,}9)$.
+
+The per-outcome tariff is consistent with Born's rule and stochastic thermodynamics~\cite{sagawa2008}. At equal amplitudes ($|{+}\rangle$) $Q_i$ are equal, no fluctuations; the difference between versions arises only for asymmetric superposition and per-act calorimetry (currently unattainable; \Sref{sec:experiment}).
+
+Proliferation of an already existing record (CNOT, redundancy in the sense of quantum Darwinism~\cite{zurek2009}) does not create a new bit; unitary entanglement (GHZ, cat states) does not multiply the tariff. Unitary preparation of $|{+}\rangle_{\mathrm{ptr}}$ ($\pi/2$, which-path encoding $|x_0\rangle+|x_1\rangle$, etc.)---reversible operations; no price.
+
+On a series of objective acts (average over outcomes):
+\begin{equation}
+dH = \ln 2\,dN_{\mathrm{bit}}, \qquad \langle\delta Q\rangle = kT\,dH = \mu_{\mathrm{bit}}\,dN_{\mathrm{bit}}, \qquad \mu_{\mathrm{bit}} = kT\ln 2.
+\end{equation}
+For a pure pre-act state one act with outcome~$i$: $\Delta Q_i = kT\ln(1/p_i)$; $\langle\Delta Q\rangle = kT\,\Delta H = kT\ln 2\,\Delta N_{\mathrm{bit}}$. The payment is not $\langle\hat{H}\rangle$ of the Hamiltonian but the thermodynamic price of fixing a pointer outcome; $\delta Q$ is dissipated in the reservoir, on average---at tariff $\mu_{\mathrm{bit}}$.
+
+%%% ===================================================================
+\section{Experimental proposal}\label{sec:experiment}
+%%% ===================================================================
+
+The proposed test is differential: the postulated term \emph{adds} heat to ordinary heating ($Q_{\mathrm{out}} = Q_{\mathrm{std}} + \mu_{\mathrm{bit}}\,\Delta N_{\mathrm{bit}}$ when $\Delta N_{\mathrm{bit}} > 0$), therefore a systematic excess over a control with $H=0$ is measured. Here $Q_{\mathrm{std}}$ is heat without tariff (absorption $W_{\mathrm{in}}$, ordinary $Q_{\mathrm{dissip}}$); $\Delta N_{\mathrm{bit}}$ is the number of pointer bits objectively erased in acts (\Sref{sec:pointer}): one act from $|{+}\rangle_{\mathrm{ptr}}$ gives $\Delta N_{\mathrm{bit}}=1$, from $I/2_{\mathrm{ptr}}$---zero. Heralded MZ---$\sim 10^{10}$ at $R=10^{8}$~s$^{-1}$ and $\tau\sim 10^{2}$~s; all test $\langle Q\rangle = kT H$ (\Sref{sec:thermo}), not distinguishing fluctuations of $Q_i$ by outcome. A test correlating $Q$ with outcome requires asymmetric superposition and per-act calorimetry and is \emph{currently} unattainable: $\Delta Q_i \sim 10^{-2}$~eV per herald at $T=300$~K is comparable to single-event bolometer noise, while heralded MZ targets $\langle Q\rangle$ via lock-in and accumulation of $\sim 10^{10}$ acts.
+
+
+An ordinary CW laser after 50/50 is a product of coherent modes $|\alpha/\sqrt{2}\rangle_L|\mathrm{i}\alpha/\sqrt{2}\rangle_R$, not a flux of $|{+}\rangle_{\mathrm{ptr}}$ qubits; the same for polarization $|\alpha\rangle_{45^\circ}$ (\Sref{sec:pointer}). Here---a pure flux of qubits: SPDC + SNSPD herald $\to$ $|1\rangle_{\mathrm{Fock}}$ $\to$ Mach--Zehnder $\to$ two pointer zones of absorption.
+
+\paragraph{Pointer basis and states.}
+The pointer basis of the act is \emph{localization of absorption}: $|x_0\rangle$, $|x_1\rangle$---two separated zones on one micro-island (left and right arm of the M--Z). Single-photon path state after the first M--Z splitter:
+\begin{equation}
+|\psi\rangle = \frac{|1,0\rangle + e^{\mathrm{i}\phi}|0,1\rangle}{\sqrt{2}}
+\quad\Leftrightarrow\quad
+|{+}\rangle_{\mathrm{ptr}}:\;
+H = S_{\mathrm{coh}} = C_r = \ln 2.
+\end{equation}
+Preparation is unitary ($S(\rho)=0$); the tariff is activated only upon objective collapse (\Sref{sec:thermo}), not upon splitting or phase rotation. Control---\emph{classical} path preparation without coherence (not a phase scrambler):
+\begin{equation}
+\rho_{\mathrm{mix}} = \tfrac{1}{2}|1,0\rangle\langle 1,0| + \tfrac{1}{2}|0,1\rangle\langle 0,1|
+\quad\Leftrightarrow\quad
+I/2_{\mathrm{ptr}}:\;
+H = 0;
+\end{equation}
+diagonals of $\rho_{\mathrm{ptr}}$ coincide with $|{+}\rangle_{\mathrm{ptr}}$, but $C_r(\rho_{\mathrm{mix}})=0$. The control is implemented \emph{before} the interferometer: an optical switch by a classical bit (physically $|1,0\rangle$ or $|0,1\rangle$ per herald); the ensemble is $I/2_{\mathrm{ptr}}$. Fast randomization of $\phi$ does \emph{not} work: in each run the state remains pure $|{+}\rangle$ with unknown phase ($H=\ln 2$ on the trajectory); $I/2$ is obtained only after tracing over the scrambler (\Sref{sec:pointer}).
+
+\textbf{Why which-path, not polarization.} \Sref{sec:pointer} shows the same tariff on a single-photon $|{+}\rangle_{\mathrm{ptr}}$ in the polarization basis; heralded MZ implements an equivalent $|{+}\rangle_{\mathrm{ptr}}$ in the localization basis $|x_i\rangle$---more convenient for event-triggered calorimetry and control of $I/2_{\mathrm{ptr}}$.
+
+\paragraph{Setup.}
+\begin{itemize}
+\item \textbf{Source}: SPDC in a monolithic or external resonator (cavity SPDC) or several parallel SPDC pairs on a common herald; $\lambda=1550$~nm, SNSPD on idler; signal $|1\rangle_{\mathrm{Fock}}$ $\to$ MZ (50/50, $\phi$ fixed). Design herald rate $R=10^{8}$~s$^{-1}$ (by $\sim 1$--$2$ orders of magnitude above typical waveguide SPDC via resonator and/or multiplexing).
+\item \textbf{Absorber}: suspended micro-island (SiN/graphene/Ge--InGaAs), two pointer zones on one island; $T=300$~K. Thermal link to substrate $G\sim 1$~$\mu$W/K (not mW/K: otherwise the phonon limit $\mathrm{NEP}=\sqrt{4k_BT^2G}$ makes lock-in infeasible). Quantum efficiency of the path ``herald $\to$ absorption in pointer zone'' $\eta=0{,}85$ (SNSPD, AR coatings, focus on zone).
+\item \textbf{Synchronization}: herald pulse $\to$ bolometer integration window $\ll T_2^*$ of path; lock-in upon switching $|{+}\rangle_{\mathrm{ptr}}\leftrightarrow I/2_{\mathrm{ptr}}$ at $f_{\mathrm{mod}}\sim 1$~kHz.
+\end{itemize}
+
+\paragraph{Signal.}
+For \emph{each} objectively fixed heralded act in channel $|{+}\rangle_{\mathrm{ptr}}$:
+$\Delta Q_{\mathrm{bit}} = kT\ln 2 \approx 1{,}8\times 10^{-2}$~eV ($\sim 2{,}2\%$ of $E_\gamma$ at $\lambda=1550$~nm); in $I/2_{\mathrm{ptr}}$---zero. At design $R=10^{8}$~s$^{-1}$ and $\eta=0{,}85$ the average excess power
+\begin{equation}
+\Delta P = \eta\, R\, kT\ln 2
+\approx 2{,}4\times 10^{-13}~\text{W}
+\quad (T=300~\text{K}).
+\end{equation}
+The fraction $\Delta Q_{\mathrm{bit}}/E_\gamma$ is constant; verification is by slope $\Delta P/R$ and event-triggered calorimetry. At $R=10^{8}$~s$^{-1}$ contamination from two-pair SPDC events ($g^{(2)}(0)>0$) dilutes the differential $|{+}\rangle_{\mathrm{ptr}}-I/2_{\mathrm{ptr}}$; $g^{(2)}(0)\ll 1$ on herald or low duty cycle of the source is required.
+
+\paragraph{Noise budget.}
+Phonon limit of the island: $\mathrm{NEP}=\sqrt{4k_BT^2G}$. At design $G\sim 1$~$\mu$W/K $\mathrm{NEP}\approx 2{,}2\times 10^{-12}\;\textrm{W}/\sqrt{\textrm{Hz}}$. Lock-in integration time to $\mathrm{SNR}\sim 1$ in power: $\tau\approx(\mathrm{NEP}/\Delta P)^2\sim 10^{2}$~s at the $\Delta P$ above.
+
+\paragraph{Channels (equal $R$, equal $\eta$).}
+\textbf{Channel $|{+}\rangle_{\mathrm{ptr}}$:} MZ with fixed $\phi$; $\langle Q\rangle = kT\ln 2$ per heralded act.
+
+\textbf{Channel $I/2_{\mathrm{ptr}}$:} same $R$; before MZ classical which-path (L/R switch); $\langle Q\rangle = 0$.
+
+The differential $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ isolates the price for one pointer bit. At $R=10^{8}$~s$^{-1}$ over $\tau\sim 10^{2}$~s $\sim 10^{10}$ acts accumulate and total excess $\Delta Q_{\mathrm{tot}}\sim 10^{-11}$~J.
+
+\paragraph{What we record.}
+\begin{enumerate}
+\item Event-triggered energy excess $\Delta Q_{\mathrm{bit}} \approx kT\ln 2$ per herald in channel $|{+}\rangle_{\mathrm{ptr}}$; zero in $I/2_{\mathrm{ptr}}$.
+\item Linearity of total $\Delta Q$ in $R$ and $T$; slope $\Delta P/R \propto \eta\,kT\ln 2$.
+\item Lock-in peak at $f_{\mathrm{mod}}$; absence of peak at constant $I/2_{\mathrm{ptr}}$.
+\end{enumerate}
+\textbf{Outcomes.} Confirmation: stable differential $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ at $R=10^{8}$~s$^{-1}$. Null at SNR $\gg 1$ $\Rightarrow$ bound on tariff $kT\ln 2$.
+
+%%% ===================================================================
+\section{Discussion}\label{sec:discussion}
+%%% ===================================================================
+
+The Heat from Bit model postulates a single thermodynamic price---for objective collapse ($Q_i = kT\ln(1/p_i)$ for pure coherent states, $\langle Q\rangle = kT H$; \Sref{sec:thermo}); unitarity is free. The existence of such acts is taken as a premise (introduction); the specific criterion for ``when'' the article does not fix. Tariff entropy $H=S_{\mathrm{coh}}$ in the pointer basis of the act (\Sref{sec:pointer}); $H=0$ for equilibrium and P-positive light, $I/2_{\mathrm{ptr}}$, and coherent $|\alpha\rangle$ (\Sref{sec:pointer}). Experimental test---heralded MZ (\Sref{sec:experiment}).
+
+\paragraph{Thermal sector and detailed balance.}
+Thermal light, solar and CMB radiation in the model are \emph{P-positive} states: a mixture of coherent $|\alpha\rangle$ with Gaussian weight~\cite{glauber1963}; each component is an eigenstate of $\hat a$ ($\hat a|\alpha\rangle=\alpha|\alpha\rangle$), in the pointer basis of the act $H=0$ (\Sref{sec:pointer}): fixing the outcome does not change $\rho$. This is not an empirical coincidence but a \emph{compatibility condition} with thermodynamics: take a cavity with matter and radiation at one $T$. Spontaneous emission carries away energy $E_\gamma$; if absorption of an equilibrium photon gave $E_\gamma + kT\ln 2$, but emission only $E_\gamma$, detailed balance breaks: the cavity would spontaneously heat from its own blackbody radiation. The model must guarantee $H=0$ for equilibrium modes \emph{structurally}. Consequence---no conflict with the CMB spectrum (FIRAS)~\cite{fixsen1996} and global energy balance of Earth~\cite{loeb2012}: $\sim 10^{17}$~W of solar thermal light falls on the surface; even a fraction $\sim 2\%$ tariff per photon would give $\sim 10^{15}$~W excess heating---by factors to tens above the measured energy imbalance ($\sim 0{,}9$~W/m$^2$, $\sim 5\times 10^{14}$~W).
+
+\paragraph{Spontaneous emission and tariff boundary.}
+Microscopically a thermal photon and a fluorescence photon are spontaneous emission; the tariff depends on the pre-act $\rho$ of the subsystem of the act (\Sref{sec:pointer}--\Sref{sec:thermo}). An equilibrium mode is a P-positive mixture ($H=0$); controlled test---$|{+}\rangle_{\mathrm{ptr}}$ (\Sref{sec:experiment}).
+
+\paragraph{Relation to existing data.}
+There is no published \emph{direct} experimental bound on the tariff by $T$ and the postulate $Q_i=kT\ln(1/p_i)$; below---why adjacent measurements neither exclude nor duplicate the proposed test (\Sref{sec:experiment}).
+
+\textbf{Optics.} Single-photon calorimetry on TES (Transition Edge Sensor)~\cite{karimi2020} resolves photon energy at 1550~nm to $\sim 0{,}1$--$1$~eV, but at $T_{\mathrm{bath}}\sim 0{,}1$--$0{,}3$~K. At tariff ``temperature of the act environment'' the excess $kT\ln 2$ at such $T$ ($\sim 10^{-5}$~eV per bit) is three to four orders below TES resolution. Cold TES data do \emph{not} bound the tariff by $T$; the heralded-MZ test (\Sref{sec:experiment}) with event-triggered calorimetry does not repeat existing single-photon measurements.
+
+\textbf{Laser radiometry.} The primary scale of optical power compares warm thermal detectors with cryogenic electrical-substitution radiometers ($T_{\mathrm{bath}}\sim 4$--$5$~K, tariff $kT\ln 2$ there $\sim 0{,}03\%$ of $E_{\gamma}$); agreement of services and detector types is 0.02--1.2\%. Naive reading ``coherent laser $\Rightarrow$ extra $\sim 2\%$ heat at 300~K'' does \emph{not} follow from the model: the tariff pays not field coherence in the amplitude basis but superposition \emph{in the pointer basis of the act} (\Sref{sec:pointer})---$|{+}\rangle_{\mathrm{ptr}}$ vs $I/2_{\mathrm{ptr}}$. An ordinary power meter: one beam, one spot, no 50/50 splitter and no controlled inter-zone phase; this is not the $|{+}\rangle_{\mathrm{ptr}}$ protocol from \Sref{sec:experiment} and not a bound on the tariff by $T$ for such a state. The proposed heralded-MZ test (\Sref{sec:experiment}) is the differential $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ on single-photon qubits; radiometry did not reproduce it.
+
+\textbf{Bounds on heating of collapse models.} Experiments on GRW/CSL/DP~\cite{bassi2013,donadi2021} (cold atoms, cantilevers, underground setups) bound \emph{any} excess heating from spontaneous localization---``background'' heating of the collapse model itself. Heat from Bit asks something else: how much heat does \emph{irreversible fixation of a pointer outcome} give if before the act there was coherence in the pointer basis ($H>0$). Existing bounds would refute Heat from Bit only if in those setups many pointer bits were destroyed per event. Usually this does not happen: the system is either already a classical mixture ($H\approx 0$), or a ``large'' superposition is not in the pointer basis where the tariff is counted---then $H=0$ and additional heating by Heat from Bit is also $\approx 0$. Measured zero heating in GRW/CSL/DP tests does not forbid the model at tariff by $T$. In \Sref{sec:experiment} $H$ and the number of bits per act are made large intentionally.
+
+\paragraph{Falsification.}
+Direct test of the model---\Sref{sec:experiment}.
+
+\paragraph{Comparison with neighboring approaches.}
+From measurement engines~\cite{elouard2017,elouard2018,yi2017,bresque2021,dassonneville2026,nogo2026} the Heat from Bit model differs by autonomy of the act without apparatus; from quantum thermodynamics of projections~\cite{kammerlander2016}---by the postulate of \emph{objective} collapse and tariff in the pointer basis of the act, not a unitary measuring device; from information reservoirs~\cite{mandal2012,mandal2013,deffner2013,ptaszynski2019}---by duality (bit as energy carrier at $\Delta S_{\mathrm{tot}}=0$); from GRW/CSL/DP~\cite{bassi2013}---by organizing heating by bit flux ($kT\ln 2$ per $\Delta N_{\mathrm{bit}}$): in standard formulations their heating is diffuse and does not correlate with informational acts (diffuse background by itself does not cancel the Heat from Bit model).
+
+\vspace{0.4em}
+\begin{samepage}
+\noindent\refstepcounter{table}\label{tab:comparison}%
+{\centering
+\textbf{Table~\thetable.} Comparison of standard QM, GRW/CSL/DP models, and the Heat from Bit model.\par\vspace{0.25em}
+{\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.8cm}|c|c|c|}
+\hline
+ &
+\makecell{\textbf{Standard}\\\textbf{QM}} &
+\makecell{\textbf{GRW/CSL/DP}} &
+\makecell{\textbf{Heat from Bit}} \\
+\hline
+Objective collapse & no & yes & yes \\
+\hline
+First law & yes & no & \makecell{violated\\locally in act} \\
+\hline
+Second law & yes & yes & yes \\
+\hline
+Heat in objective act & 0 & diffuse heating & $\langle Q\rangle=kTH$ \\
+\hline
+Distinctive test & --- & \makecell{Gran Sasso;\\LISA Pathfinder;\\ultracold atoms} & heralded MZ \\
+\hline
+\end{tabular}%
+}
+}
+\par}
+\end{samepage}
+\vspace{0.6em}
+
+\bibliographystyle{unsrt}
+\bibliography{refs}
+
+\end{document}
