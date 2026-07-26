@@ -6,8 +6,8 @@ Manuscript proposing that any mechanism of **objective collapse** must pay a the
 
 | Language | Source | PDF | Notes |
 |----------|--------|-----|-------|
-| English | [`heat_from_bit_en.tex`](heat_from_bit_en.tex) | [`heat_from_bit_en.pdf`](heat_from_bit_en.pdf) | Main text only (7 sections + Declarations) |
-| Russian | [`heat_from_bit_ru.tex`](heat_from_bit_ru.tex) | [`heat_from_bit_ru.pdf`](heat_from_bit_ru.pdf) | Main text (7 sections) + 3 appendices |
+| English | [`heat_from_bit_en.tex`](heat_from_bit_en.tex) | [`heat_from_bit_en.pdf`](heat_from_bit_en.pdf) | 7 sections + Declarations |
+| Russian | [`heat_from_bit_ru.tex`](heat_from_bit_ru.tex) | [`heat_from_bit_ru.pdf`](heat_from_bit_ru.pdf) | 7 sections + Declarations |
 
 ## Summary
 
@@ -29,14 +29,14 @@ The work asks about the **thermodynamic price** of objective collapse—not abou
 6. Experimental proposal (heralded MZ)  
 7. Discussion  
 
-Declarations (Funding, data availability, competing interests, author contributions) follow the main text.
+Declarations follow the main text.
 
 ## Repository layout
 
 ```
 heat_from_bit_en.tex   # English manuscript (LaTeX source)
 heat_from_bit_en.pdf   # Compiled English PDF
-heat_from_bit_ru.tex   # Russian manuscript (LaTeX source, with appendices)
+heat_from_bit_ru.tex   # Russian manuscript (LaTeX source)
 heat_from_bit_ru.pdf   # Compiled Russian PDF
 refs.bib               # Shared bibliography
 build.ps1              # Build script (pdflatex + bibtex)
