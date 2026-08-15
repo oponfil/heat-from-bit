@@ -2,7 +2,7 @@
 
 **Author:** [Oleg Ponfilenok](mailto:ponfil@gmail.com) · Independent researcher
 
-Manuscript proposing that any mechanism of **objective collapse** must pay a thermodynamic price of $k\ln 2$ per destroyed bit of coherence *in the pointer basis of the act*—materialized as heat $\Delta Q = kT\ln 2$ in an environment at temperature $T$. Unitarity is free; the tariff activates only upon irreversible fixation of a pointer outcome.
+Manuscript proposing that any mechanism of **objective collapse** must pay a thermodynamic price of $k\ln 2$ per destroyed bit of coherence *in the pointer basis of the act*—materialized as heat $\Delta Q = kT\ln 2$ in an environment at temperature $T$. Unitarity is free; the working rule conditions the tariff only on physically delivered objective local pointer records.
 
 | Language | Source | PDF | Notes |
 |----------|--------|-----|-------|
@@ -13,10 +13,11 @@ Manuscript proposing that any mechanism of **objective collapse** must pay a the
 
 The work asks about the **thermodynamic price** of objective collapse—not about choosing a criterion for *when* collapse occurs. Landauer's principle links classical bit erasure to dissipation $Q \ge kT\ln 2$; here the tariff is tied to **coherence in the pointer basis of the act** ($H = S_{\mathrm{coh}} = C_r$), not to subsystem entropy growth under unitary decoherence.
 
-- **Case B vs C:** a heralded single-photon superposition $|{+}\rangle_{\mathrm{ptr}}$ pays $\Delta Q = kT\ln 2$ per objectively fixed act; the classical mixture $I/2_{\mathrm{ptr}}$ (same pointer statistics, no phase to erase) pays nothing.
+- **State rule:** an affine, nonnegative tariff that vanishes on a complete pointer basis is trivial. The working non-affine rule uses conditional states selected by physical local records; global remote conditioning is discussed only as a stronger signaling variant.
+- **Case B vs C:** a heralded single-photon superposition $|{+}\rangle_{\mathrm{ptr}}$ pays $\Delta Q = kT\ln 2$ per objectively fixed act; a locally recorded classical which-path preparation pays nothing.
 - **Per-outcome tariff (pure states):** $Q_i = kT\ln(1/p_i)$; for $|{+}\rangle$, $\langle Q\rangle = kT\ln 2$.
 - **Origin of heat:** in CSL/GRW the tariff may come from the collapse-model energy reservoir; otherwise $\delta Q$ may be drawn from energy uncertainty over act duration $\tau_{\mathrm{col}}$ (Mandelstam–Tamm bound). A single act is not microscopically auditable; over $N$ acts one observes $\Delta Q_{\mathrm{tot}} = N\,kT\Delta H$. The first law is violated only locally, in a sub-$\tau_{\mathrm{th}}$ act of non-unitary fixation.
-- **Thermal sector:** equilibrium and P-positive light have $H = 0$ structurally—required for detailed balance (compatible with the CMB spectrum and Earth's radiation budget).
+- **Thermal sector:** detailed balance, FIRAS, and Earth's radiation budget constrain which physical preparation records may enter the nonlinear tariff; a positive-P decomposition alone does not solve this open consistency condition.
 - **Proposed test:** differential calorimetry in a **heralded Mach–Zehnder** setup—$|{+}\rangle_{\mathrm{ptr}}$ channel vs $I/2_{\mathrm{ptr}}$ control at $T \approx 300$~K; target excess $\Delta Q_{\mathrm{bit}} \approx kT\ln 2$ per herald.
 
 ## Structure (English)

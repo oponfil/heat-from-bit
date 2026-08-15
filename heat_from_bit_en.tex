@@ -23,7 +23,7 @@
 \maketitle
 
 \begin{abstract}
-We propose the hypothesis that any mechanism of \emph{objective} collapse must pay a thermodynamic price of $k\ln 2$ per destroyed bit of coherence \emph{in the pointer basis of the act}---as heat $\Delta Q = kT\ln 2$ in an environment at temperature~$T$. Test: calorimetry of heating upon absorption of a heralded single-photon qubit---$|{+}\rangle$ versus the control $I/2$.
+We propose the hypothesis that any mechanism of \emph{objective} collapse must pay a thermodynamic price of $k\ln 2$ per destroyed bit of coherence \emph{in the pointer basis of the act}---as heat $\Delta Q = kT\ln 2$ in an environment at temperature~$T$. The tariff is evaluated on a state conditioned only on a physically delivered local pointer record. We prove that a nontrivial nonnegative tariff vanishing on pointer-diagonal states cannot be an affine functional of one local density matrix. Test: calorimetry of heating upon absorption of a heralded single-photon qubit---$|{+}\rangle$ versus the control $I/2$.
 \end{abstract}
 
 \noindent\textbf{Keywords:} objective~collapse; pointer~state; quantum~Darwinism; Landauer's~principle; heat~from~bit; entropy~collection
@@ -106,6 +106,7 @@ Under \emph{unitary} dephasing $S(\rho_{\mathrm{ptr}})$ does not change, the gro
 \textbf{Postulate (Heat from Bit).} Testable hypothesis of the work (\S~\ref{sec:experiment}): under \emph{objective} collapse with $H>0$ the jump of the tariff is identified with thermodynamic entropy of the reservoir $S_{\mathrm{th}}=kH$ and heat $\Delta Q=T\Delta S_{\mathrm{th}}=kT\Delta H$ in the environment at temperature~$T$; the pointer outcome is fixed irreversibly. Average over acts
 \begin{equation}
 \langle Q\rangle = kT\,H = kT\,C_r(\rho).
+\label{eq:tariff_mean}
 \end{equation}
 For a given $H$ the distribution of $Q_i$ does \emph{not} follow from this (for example, $Q_i \equiv kT H$ gives the same $\langle Q\rangle$). For a \emph{pure} pre-act $|\psi\rangle=\sum_i c_i|i\rangle$ ($S(\rho)=0$, $p_i=|c_i|^2$) the model \emph{additionally} adopts a per-trajectory tariff
 \begin{equation}
@@ -115,7 +116,7 @@ For a given $H$ the distribution of $Q_i$ does \emph{not} follow from this (for 
 \begin{equation}
 \langle Q\rangle = \sum_i p_i\, Q_i = kT H, \qquad \mathrm{Var}(Q) = (kT)^2\,\mathrm{Var}(\ln p_i).
 \end{equation}
-For a mixed pre-act state ($H=0$, e.g.\ $I/2$) the per-act tariff is not activated: $\langle Q\rangle=0$. At equal $p_i=1/n$ all outcomes are equivalent: $Q_i = kT\ln n$; for binary $|{+}\rangle$ ($p_i=\tfrac12$) this is $\Delta Q = kT\ln 2$, $\Delta H=\ln 2$ and $\Delta S_{\mathrm{th}} = k\ln 2$ ($\Delta N_{\mathrm{bit}}=1$). Example $p_0=0{,}9$, $p_1=0{,}1$: an act with outcome~0 releases $kT\ln(10/9)\approx 0{,}11\,kT$, with outcome~1---$kT\ln 10\approx 2{,}3\,kT$; the average $\approx 0{,}33\,kT = kT\,h_2(0{,}9)$.
+For a mixed state diagonal in the pointer basis ($H=0$, e.g.\ $I/2$) the per-act tariff is not activated: $\langle Q\rangle=0$; a partially coherent mixed state generally has $H>0$. At equal $p_i=1/n$ all outcomes of a pure state are equivalent: $Q_i = kT\ln n$; for binary $|{+}\rangle$ ($p_i=\tfrac12$) this is $\Delta Q = kT\ln 2$, $\Delta H=\ln 2$ and $\Delta S_{\mathrm{th}} = k\ln 2$ ($\Delta N_{\mathrm{bit}}=1$). Example $p_0=0{,}9$, $p_1=0{,}1$: an act with outcome~0 releases $kT\ln(10/9)\approx 0{,}11\,kT$, with outcome~1---$kT\ln 10\approx 2{,}3\,kT$; the average $\approx 0{,}33\,kT = kT\,h_2(0{,}9)$.
 
 The per-outcome tariff is consistent with Born's rule and stochastic thermodynamics~\cite{sagawa2008}. At equal amplitudes ($|{+}\rangle$) $Q_i$ are equal, no fluctuations; the difference between versions arises only for asymmetric superposition and per-act calorimetry (currently unattainable; \S~\ref{sec:experiment}).
 
@@ -126,6 +127,29 @@ On a series of objective acts (average over outcomes):
 dH = \ln 2\,dN_{\mathrm{bit}}, \qquad \langle\delta Q\rangle = kT\,dH = \mu_{\mathrm{bit}}\,dN_{\mathrm{bit}}, \qquad \mu_{\mathrm{bit}} = kT\ln 2.
 \end{equation}
 For a pure pre-act state one act with outcome~$i$: $\Delta Q_i = kT\ln(1/p_i)$; $\langle\Delta Q\rangle = kT\,\Delta H = kT\ln 2\,\Delta N_{\mathrm{bit}}$. The payment is not $\langle\hat{H}\rangle$ of the Hamiltonian but the thermodynamic price of fixing a pointer outcome; $\delta Q$ is dissipated in the reservoir, on average---at tariff $\mu_{\mathrm{bit}}$.
+
+\subsection{The state on which the tariff is evaluated}\label{sec:conditioning}
+
+Equation~\eqref{eq:tariff_mean} is incomplete without a rule specifying which local state enters $C_r$. We distinguish three possibilities. (i)~\emph{Unconditioned local rule}: $Q=kT C_r(\rho_S)$ for the reduced state of the act system. It is causal and cannot distinguish ensemble decompositions of the same $\rho_S$, but an averaged phase scrambler becomes the same $I/2$ as the classical control. (ii)~\emph{Locally conditioned rule}: if an objective classical pointer register $R$ carrying record $r$ has physically entered the causal state of the act region, use the conditional state $\rho_{S|r}$,
+\begin{equation}
+\langle Q\rangle_R=kT\sum_r p_r\,C_r(\rho_{S|r}).
+\label{eq:local_conditioned_tariff}
+\end{equation}
+(iii)~\emph{Globally conditioned rule}: a remote ontic branch is selected even without a locally delivered record; this stronger version can distinguish remotely prepared decompositions of one $\rho_S$.
+
+This work adopts rule~(ii). A ``record'' is a physical local register causally delivered to the act, not an observer's knowledge or information merely existing somewhere in its past light cone. If $R$ itself remains in superposition or is only entangled with $S$, no classical index $r$ is introduced and no arbitrary ensemble decomposition of $\rho_S$ may be selected. Equation~\eqref{eq:local_conditioned_tariff} therefore requires an external criterion for when $R$ has become an objective pointer register; Heat from Bit specifies the price of such an act, not a universal criterion for ``when''.
+
+\paragraph{Theorem for a linear tariff.}
+Let a single-act sector be finite-dimensional, let $\{|i\rangle\}$ be a complete pointer basis, and let the mean tariff be affine in the local density matrix. Then $Q(\rho)=\operatorname{Tr}(X\rho)$ for a Hermitian $X$ (a constant is absorbed into the identity component). If
+\begin{equation}
+Q(|i\rangle\langle i|)=0\quad\forall i,
+\qquad
+Q(\rho)\ge0\quad\forall\rho,
+\label{eq:linear_tariff_conditions}
+\end{equation}
+then $X=0$ and $Q\equiv0$. Indeed, the second condition gives $X\ge0$, the first gives $X_{ii}=0$, and positivity implies $|X_{ij}|^2\le X_{ii}X_{jj}=0$. Thus a \emph{nontrivial} positive tariff that vanishes on every pointer-diagonal state cannot be an affine functional of one local $\rho$. This is a triviality theorem for the linear branch, not an equivalence ``nonlinearity $\Leftrightarrow$ signaling''.
+
+Affineness of a local observable is sufficient for different decompositions of one $\rho_S$ not to signal through that channel; the converse is false. In particular, nonlinear $kT C_r(\rho_S)$ also does not signal: for one half of a Bell pair $\rho_B=I/2$ in every remote basis and $C_r(I/2)=0$. A signal arises only after the additional global conditioning~(iii), not from nonlinearity alone~\cite{gisin1989,gisin1990,polchinski1991,hjw1993}.
 
 
 \section{Origin of heat energy}\label{sec:origin}
@@ -162,7 +186,9 @@ Preparation is unitary ($S(\rho)=0$); the tariff is activated only upon objectiv
 I/2_{\mathrm{ptr}}:\;
 H = 0;
 \end{equation}
-diagonals of $\rho_{\mathrm{ptr}}$ coincide with $|{+}\rangle_{\mathrm{ptr}}$, but $C_r(\rho_{\mathrm{mix}})=0$. The control is implemented \emph{before} the interferometer: an optical switch by a classical bit (physically $|1,0\rangle$ or $|0,1\rangle$ per herald); the ensemble is $I/2_{\mathrm{ptr}}$. Fast randomization of $\phi$ does \emph{not} work: in each run the state remains pure $|{+}\rangle$ with unknown phase ($H=\ln 2$ on the trajectory); $I/2$ is obtained only after tracing over the scrambler (\S~\ref{sec:pointer}).
+diagonals of $\rho_{\mathrm{ptr}}$ coincide with $|{+}\rangle_{\mathrm{ptr}}$, but $C_r(\rho_{\mathrm{mix}})=0$. The control is implemented \emph{before} the interferometer: an optical switch driven by an objective local bit $r$ (physically $|1,0\rangle$ or $|0,1\rangle$ per herald). Under the adopted locally conditioned rule~\eqref{eq:local_conditioned_tariff}, the conditional state is already a pointer state and $H=0$.
+
+Fast phase randomization is not equivalent to this control if $\phi$ is objectively recorded in a local modulator register that causally enters the preparation of the act: conditioned on that record the state remains pure $|\psi(\phi)\rangle$ and $H=\ln2$. If the phase controller remains quantum, its record is erased before the act, or it does not physically enter the causal state of the absorber, conditioning is forbidden and the unconditioned $I/2$ with $H=0$ is used. The distinction is therefore fixed by a physical preparation register, not by an observer choosing between equivalent decompositions of one $\rho$ (\S~\ref{sec:conditioning}).
 
 \textbf{Why which-path, not polarization.} \S~\ref{sec:pointer} shows the same tariff on a single-photon $|{+}\rangle_{\mathrm{ptr}}$ in the polarization basis; heralded MZ implements an equivalent $|{+}\rangle_{\mathrm{ptr}}$ in the localization basis $|x_i\rangle$---more convenient for event-triggered calorimetry and control of $I/2_{\mathrm{ptr}}$.
 
@@ -180,6 +206,7 @@ $\Delta Q_{\mathrm{bit}} = kT\ln 2 \approx 1{,}8\times 10^{-2}$~eV ($\sim 2{,}2\
 \Delta P = \eta\, R\, kT\ln 2
 \approx 2{,}4\times 10^{-13}~\text{W}
 \quad (T=300~\text{K}).
+\label{eq:signal_power}
 \end{equation}
 The fraction $\Delta Q_{\mathrm{bit}}/E_\gamma$ is constant; verification is by slope $\Delta P/R$ and event-triggered calorimetry. At $R=10^{8}$~s$^{-1}$ contamination from two-pair SPDC events ($g^{(2)}(0)>0$) dilutes the differential $|{+}\rangle_{\mathrm{ptr}}-I/2_{\mathrm{ptr}}$; $g^{(2)}(0)\ll 1$ on herald or low duty cycle of the source is required.
 
@@ -201,15 +228,23 @@ The differential $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ isolates the 
 \end{enumerate}
 \textbf{Outcomes.} Confirmation: stable differential $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ at $R=10^{8}$~s$^{-1}$. Null at SNR $\gg 1$ $\Rightarrow$ bound on tariff $kT\ln 2$.
 
+\paragraph{Causal delayed-record test.}
+Equation~\eqref{eq:local_conditioned_tariff} permits an additional test without superluminal communication. Alice measures one half of a Bell pair in the $Z$ or $X$ basis and sends Bob a classical message containing \emph{both basis and outcome}. If Bob's act occurs before physical arrival of the record, only $\rho_B=I/2$ is locally available and the tariff is zero. After an equal-size record arrives, the conditional states are $|0\rangle,|1\rangle$ for $Z$ ($H=0$) or $|+\rangle,|-\rangle$ for $X$ ($H=\ln2$). The ``act before/after record'' differential tests dependence on causally available side information; ordinary heat of delivery and memory must cancel between messages of equal energy. The same test can be implemented with a locally correlated register, so it probes the conditioning rule rather than quantum nonlocality itself.
+
+\paragraph{Transmon as an outlook.}
+Dispersive readout of a transmon at millikelvin temperatures is attractive because substrate temperature and readout photon number can be varied independently. Its sensitivity cannot, however, be obtained by extrapolating $G\propto T^3$ from room temperature. The thermal-conductance quantum $G_Q=\pi^2k_B^2T/(3h)$ is the maximum contribution of a perfectly transmitting channel, not a universal lower bound; a real budget must include the device-specific $G$, heat capacity and bandwidth, $\chi$, $\kappa$, $n_{\mathrm{crit}}$, pulse shape, photon shot noise, and ordinary state-dependent heat. We therefore retain the transmon only as a direction for a separate calculation, without a claimed integration-time table~\cite{schwab2000,gambetta2006}.
+
 
 \section{Discussion}\label{sec:discussion}
-The Heat from Bit model postulates a single thermodynamic price---for objective collapse ($Q_i = kT\ln(1/p_i)$ for pure coherent states, $\langle Q\rangle = kT H$; \S~\ref{sec:thermo}); unitarity is free. The existence of such acts is taken as a premise (introduction); the specific criterion for ``when'' the article does not fix. Tariff entropy $H=S_{\mathrm{coh}}$ in the pointer basis of the act (\S~\ref{sec:pointer}); $H=0$ for equilibrium and P-positive light, $I/2_{\mathrm{ptr}}$, and coherent $|\alpha\rangle$ (\S~\ref{sec:pointer}). Experimental test---heralded MZ (\S~\ref{sec:experiment}).
+The Heat from Bit model postulates a single thermodynamic price---for objective collapse ($Q_i = kT\ln(1/p_i)$ for pure coherent states, $\langle Q\rangle = kT H$; \S~\ref{sec:thermo}); unitarity is free. The existence of such acts is taken as a premise (introduction); the specific criterion for ``when'' the article does not fix. A substantive part of the postulate is the state rule: the working version conditions only on a physically delivered objective local pointer register (\S~\ref{sec:conditioning}). The trajectory tariff $Q_i$ remains an independent additional postulate, not a consequence of the linear-tariff theorem. The primary experimental test is heralded MZ (\S~\ref{sec:experiment}).
 
 \paragraph{Thermal sector and detailed balance.}
-Thermal light, solar and CMB radiation in the model are \emph{P-positive} states: a mixture of coherent $|\alpha\rangle$ with Gaussian weight~\cite{glauber1963}; each component is an eigenstate of $\hat a$ ($\hat a|\alpha\rangle=\alpha|\alpha\rangle$), in the pointer basis of the act $H=0$ (\S~\ref{sec:pointer}): fixing the outcome does not change $\rho$. This is not an empirical coincidence but a \emph{compatibility condition} with thermodynamics: take a cavity with matter and radiation at one $T$. Spontaneous emission carries away energy $E_\gamma$; if absorption of an equilibrium photon gave $E_\gamma + kT\ln 2$, but emission only $E_\gamma$, detailed balance breaks: the cavity would spontaneously heat from its own blackbody radiation. The model must guarantee $H=0$ for equilibrium modes \emph{structurally}. Consequence---no conflict with the CMB spectrum (FIRAS)~\cite{fixsen1996} and global energy balance of Earth~\cite{loeb2012}: $\sim 10^{17}$~W of solar thermal light falls on the surface; even a fraction $\sim 2\%$ tariff per photon would give $\sim 10^{15}$~W excess heating---by factors to tens above the measured energy imbalance ($\sim 0{,}9$~W/m$^2$, $\sim 5\times 10^{14}$~W).
+Thermal states admit a positive $P$ representation as mixtures of coherent $|\alpha\rangle$~\cite{glauber1963}, but for a nonlinear tariff that mathematical decomposition cannot automatically be treated as the physically realized ensemble. Under the unconditioned local rule a thermal $\rho$ is diagonal in the relevant pointer basis and gives $H=0$. Under the adopted conditioned rule one must additionally specify whether an objective local source register exists and which conditional states $\rho_{S|r}$ it physically prepares. An arbitrary convenient $P$ decomposition is not allowed; no conditioning is made on a quantum or remote register.
+
+This is an open compatibility condition with detailed balance, not a proved exemption of equilibrium light. If each absorbed solar photon of characteristic energy $2$~eV paid even $kT\ln2=0.0179$~eV at 300~K, the addition would be about $0.9\%$: for absorbed flux of order $240$~W/m$^2$ this is $\sim2.1$~W/m$^2$, already above the measured imbalance $\sim0.9$~W/m$^2$~\cite{loeb2012}. Splitting objectification into $O(1)$ acts limits the maximum to one bit but does not restore a zero tariff. FIRAS~\cite{fixsen1996}, Earth's energy balance, and laboratory detailed balance therefore constrain any admissible thermal-register rule.
 
 \paragraph{Spontaneous emission and tariff boundary.}
-Microscopically a thermal photon and a fluorescence photon are spontaneous emission; the tariff depends on the pre-act $\rho$ of the subsystem of the act (\S~\ref{sec:pointer}--\S~\ref{sec:thermo}). An equilibrium mode is a P-positive mixture ($H=0$); controlled test---$|{+}\rangle_{\mathrm{ptr}}$ (\S~\ref{sec:experiment}).
+Microscopically both thermal and fluorescence photons arise from spontaneous emission; an ensemble name alone does not determine the tariff. The subsystem of the act, pointer basis, and physically realized local preparation register must be specified (\S~\ref{sec:conditioning}). The controlled $|{+}\rangle_{\mathrm{ptr}}$ test in \S~\ref{sec:experiment} fixes these data explicitly; for an equilibrium mode their ontic specification remains a condition on the model.
 
 \paragraph{Relation to existing data.}
 There is no published \emph{direct} experimental bound on the tariff by $T$ and the postulate $Q_i=kT\ln(1/p_i)$; below---why adjacent measurements neither exclude nor duplicate the proposed test (\S~\ref{sec:experiment}).
@@ -219,6 +254,9 @@ There is no published \emph{direct} experimental bound on the tariff by $T$ and 
 \textbf{Laser radiometry.} The primary scale of optical power compares warm thermal detectors with cryogenic electrical-substitution radiometers ($T_{\mathrm{bath}}\sim 4$--$5$~K, tariff $kT\ln 2$ there $\sim 0{,}03\%$ of $E_{\gamma}$); agreement of services and detector types is 0.02--1.2\%. Naive reading ``coherent laser $\Rightarrow$ extra $\sim 2\%$ heat at 300~K'' does \emph{not} follow from the model: the tariff pays not field coherence in the amplitude basis but superposition \emph{in the pointer basis of the act} (\S~\ref{sec:pointer})---$|{+}\rangle_{\mathrm{ptr}}$ vs $I/2_{\mathrm{ptr}}$. An ordinary power meter: one beam, one spot, no 50/50 splitter and no controlled inter-zone phase; this is not the $|{+}\rangle_{\mathrm{ptr}}$ protocol from \S~\ref{sec:experiment} and not a bound on the tariff by $T$ for such a state. The proposed heralded-MZ test (\S~\ref{sec:experiment}) is the differential $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ on single-photon qubits; radiometry did not reproduce it.
 
 \textbf{Bounds on heating of collapse models.} Experiments on GRW/CSL/DP~\cite{bassi2013,donadi2021} (cold atoms, cantilevers, underground setups) bound \emph{any} excess heating from spontaneous localization---``background'' heating of the collapse model itself. Heat from Bit asks something else: how much heat does \emph{irreversible fixation of a pointer outcome} give if before the act there was coherence in the pointer basis ($H>0$). Existing bounds would refute Heat from Bit only if in those setups many pointer bits were destroyed per event. Usually this does not happen: the system is either already a classical mixture ($H\approx 0$), or a ``large'' superposition is not in the pointer basis where the tariff is counted---then $H=0$ and additional heating by Heat from Bit is also $\approx 0$. Measured zero heating in GRW/CSL/DP tests does not forbid the model at tariff by $T$. In \S~\ref{sec:experiment} $H$ and the number of bits per act are made large intentionally.
+
+\paragraph{Strong globally conditioned variant.}
+If rule~(iii) of \S~\ref{sec:conditioning} is adopted instead of the working local rule, Alice's measurement remotely selects for Bob either $\{|0\rangle,|1\rangle\}$ or $\{|+\rangle,|-\rangle\}$ while $\rho_B=I/2$ in both cases. Bob's idealized heat differential then equals the MZ signal~\eqref{eq:signal_power}; with the parameters of \S~\ref{sec:experiment}, $\tau=(\mathrm{NEP}/\Delta P)^2\approx83$~s means only $\mathrm{SNR}\approx1$, not one reliably transmitted bit. This would be controllable superluminal signaling and would require a separate global causal-order law, such as a preferred foliation. It is \emph{not} a consequence of nonlinear $C_r$ and is not part of the main model. Bohmian mechanics illustrates preferred foliation with hidden nonlocality but does not itself permit controllable signaling; relativistic rGRWf, by contrast, is constructed without a preferred foliation~\cite{bohm1952,tumulka2006}. These theories are comparisons, not proofs that either structure is necessary.
 
 \paragraph{Falsification.}
 Direct test of the model---\S~\ref{sec:experiment}.
