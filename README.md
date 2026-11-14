@@ -1,6 +1,6 @@
 # Heat from Bit: The Thermodynamic Price of Objective Collapse
 
-**Author:** [Oleg Ponfilenok](mailto:ponfil@gmail.com) · Independent researcher
+**Author:** Oleg Ponfilenok · Independent researcher
 
 Manuscript proposing that any mechanism of **objective collapse** must pay a thermodynamic price of $k\ln 2$ per destroyed bit of coherence *in the pointer basis of the act*—materialized as heat $\Delta Q = kT\ln 2$ in an environment at temperature $T$. Unitarity is free; the working rule conditions the tariff only on physically delivered objective local pointer records.
 
@@ -65,3 +65,7 @@ Build artifacts (`.aux`, `.log`, `.bbl`, etc.) are listed in [`.gitignore`](.git
 ## Keywords
 
 objective collapse · pointer state · quantum Darwinism · Landauer's principle · heat from bit · entropy collection
+
+## License
+
+The text of the manuscript is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
