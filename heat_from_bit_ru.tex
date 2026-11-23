@@ -1,16 +1,33 @@
 % !TEX root = heat_from_bit_ru.tex
-\documentclass[12pt,a4paper]{article}
-\usepackage{cmap}
+\documentclass[11pt,a4paper]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \pdfminorversion=5
+  \pdfobjcompresslevel=0
+  \usepackage{cmap}
+  \usepackage[utf8]{inputenc}
+  \usepackage[T2A]{fontenc}
+\else
+  \usepackage{fontspec}
+  % XeTeX/tectonic: no object streams, so that internal links work in simple PDF viewers
+  \AtBeginDocument{\special{dvipdfmx:config C 0x0040}}
+  \setmainfont{Avenir Next}[UprightFont={* Regular}, ItalicFont={* Italic}, BoldFont={* Demi Bold}, BoldItalicFont={* Demi Bold Italic}]
+  \setsansfont{Avenir Next}[UprightFont={* Regular}, ItalicFont={* Italic}, BoldFont={* Demi Bold}, BoldItalicFont={* Demi Bold Italic}]
+  \setmonofont{Courier New}[Scale=0.9]
+\fi
 \usepackage[margin=1in]{geometry}
+\emergencystretch=2em
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage[utf8]{inputenc}
-\usepackage[T2A]{fontenc}
+\ifPDFTeX\else\AtBeginDocument{\renewcommand{\hbar}{\text{\normalfont\itshape\symbol{"0127}}}}\fi
 \usepackage[russian]{babel}
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks,pdfversion=1.5]{hyperref}
 \newcommand{\Sref}[1]{\hyperref[#1]{\S\ref{#1}}}
-\usepackage{comfortaa}
+\ifPDFTeX
+  \usepackage{comfortaa}
+\fi
 \renewcommand*\familydefault{\sfdefault}
 \usepackage[x11names]{xcolor}
+\definecolor{fg}{gray}{0.80}
 \usepackage{indentfirst}
 \usepackage{booktabs}
 \usepackage{array}
@@ -19,17 +36,17 @@
 \usepackage{ragged2e}
 \usepackage{makecell}
 \usepackage{colortbl}
-\arrayrulecolor{white}
+\arrayrulecolor{fg}
 
 \makeatletter
 \renewcommand{\thefootnote}{\arabic{footnote}}
-\renewcommand{\@makefnmark}{\mbox{\textsuperscript{\textcolor{white}{\thefootnote}}}}
-\renewcommand{\@makefntext}[1]{\parindent 1.8em\noindent\textsuperscript{\textcolor{white}{\thefootnote}}\ \textcolor{white}{#1}}
-\renewcommand{\footnoterule}{\kern-3pt\color{white}\hrule width 0.4\textwidth height 0.4pt\kern 2.6pt}
+\renewcommand{\@makefnmark}{\mbox{\textsuperscript{\textcolor{fg}{\thefootnote}}}}
+\renewcommand{\@makefntext}[1]{\parindent 1.8em\noindent\textsuperscript{\textcolor{fg}{\thefootnote}}\ \textcolor{fg}{#1}}
+\renewcommand{\footnoterule}{\kern-3pt\color{fg}\hrule width 0.4\textwidth height 0.4pt\kern 2.6pt}
 \renewcommand{\ps@plain}{%
   \let\@oddhead\@empty
   \let\@evenhead\@empty
-  \def\@oddfoot{\hfill\textcolor{white}{\thepage}\hfill}%
+  \def\@oddfoot{\hfill\textcolor{fg}{\thepage}\hfill}%
   \let\@evenfoot\@oddfoot
 }
 \makeatother
@@ -46,7 +63,7 @@
 \begin{document}
 
 \pagecolor{black}
-\color{white}
+\color{fg}
 
 \maketitle
 
@@ -76,9 +93,11 @@
 
 Идея Heat from Bit выросла из простого мысленного эксперимента, в котором \emph{один} фотон поглощается анизотропным поглотителем в базисе поляризации, задающим pointer-базис акта. Базис~--- $\{|0\rangle,|1\rangle\}$ линейной поляризации ($|0\rangle$~--- горизонталь, $|1\rangle$~--- вертикаль): какой из этих исходов необратимо зафиксируется при поглощении~--- то есть при детекции?
 
-\textbf{Случай~A (определённая поляризация).} Однофотонное состояние $|0\rangle$~--- собственное состояние pointer-базиса, совпадающее с осью поляризатора. Когерентность $S_{\mathrm{coh}}=0$. Фотон поглощается, поглотитель получает энергию $E_\gamma$~--- обычное первое начало; альтернативный pointer-исход $|1\rangle$ в предактовом состоянии отсутствует, стирать нечего. При акте объективного коллапса ничего не меняется.
+\paragraph{Случай~A (определённая поляризация).}
+Однофотонное состояние $|0\rangle$~--- собственное состояние pointer-базиса, совпадающее с осью поляризатора. Когерентность $S_{\mathrm{coh}}=0$. Фотон поглощается, поглотитель получает энергию $E_\gamma$~--- обычное первое начало; альтернативный pointer-исход $|1\rangle$ в предактовом состоянии отсутствует, стирать нечего. При акте объективного коллапса ничего не меняется.
 
-\textbf{Случай~B (суперпозиция pointer-исходов).} Тот же однофотонный протокол, но фотон подготовлен в
+\paragraph{Случай~B (суперпозиция pointer-исходов).}
+Тот же однофотонный протокол, но фотон подготовлен в
 \begin{equation}
 |{+}\rangle_{\mathrm{ptr}} = \frac{|0\rangle + |1\rangle}{\sqrt{2}}
 \end{equation}
@@ -94,7 +113,8 @@
 \end{equation}
 \emph{на каждый} объективно зафиксированный однофотонный акт ($|{+}\rangle_{\mathrm{ptr}}\to|0\rangle$ или $|1\rangle$), сверх обычного нагрева на $E_\gamma$. Избыток случая~B над~A при равной $E_\gamma$~--- предсказание Heat from Bit.
 
-\textbf{Случай~C (классическая смесь).} Тот же протокол, но фотон подготовлен как $I/2$ в pointer-базисе:
+\paragraph{Случай~C (классическая смесь).}
+Тот же протокол, но фотон подготовлен как $I/2$ в pointer-базисе:
 \begin{equation}
 I/2 = \frac{|0\rangle\langle 0| + |1\rangle\langle 1|}{2}
 \end{equation}
@@ -107,13 +127,15 @@ I/2 = \frac{|0\rangle\langle 0| + |1\rangle\langle 1|}{2}
 При взаимодействии с окружением система декогерирует в \emph{pointer-базис} $\{|i\rangle\}$~--- устойчивых исходов, размножаемых в среде (einselection; квантовый дарвинизм~\cite{zurek2009}). Классическая запись~--- конкретный pointer-исход $|i\rangle$. $|{+}\rangle$ и $I/2$ совпадают по $\rho_{\mathrm{ptr}}$ и $\langle\hat{H}\rangle$; болометр видит лишь диагональ в pointer-базисе. Тариф~--- по когерентности в pointer-базисе \emph{акта}, а не по $S(\rho)$ абстрактно.
 
 
-\textbf{Когерентность в pointer-базисе.} В ресурсной теории когерентности~\cite{baumgratz2014,streltsov2017}:
+\paragraph{Когерентность в pointer-базисе.}
+В ресурсной теории когерентности~\cite{baumgratz2014,streltsov2017}:
 \begin{equation}
 S_{\mathrm{coh}}(\rho) = S(\rho_{\mathrm{ptr}}) - S(\rho),
 \end{equation}
 где $\rho_{\mathrm{ptr}}$~--- диагональ $\rho$ в pointer-базисе акта. Для $|{+}\rangle$ $S_{\mathrm{coh}}=\ln 2$, для $I/2$~--- ноль; это \emph{relative entropy of coherence} $C_r(\rho)$~\cite{baumgratz2014,streltsov2017} относительно того же базиса. Kammerlander и Anders~\cite{kammerlander2016} показывают, что термодинамика \emph{проекции} в базис (дефазировка, неселективное измерение) нетривиальна только при когерентности в этом базисе; для диагональных смесей $\Delta S=0$. В оптимальном процессе для $|{+}\rangle$ из такой проекции можно извлечь $\langle W\rangle=kT\ln 2$ работы. Heat from Bit переносит эту различимость на pointer-базис акта и постулирует связанную с $S_{\mathrm{coh}}$ диссипацию при объективной фиксации исхода.
 
-\textbf{Тарифная энтропия $H$.} Обозначим $H$~--- \emph{тарифную энтропию} предактового состояния в pointer-базисе \emph{акта}; $S(\rho)$, $S_{\mathrm{coh}}$ и $H$~--- в \emph{натах}:
+\paragraph{Тарифная энтропия $H$.}
+Обозначим $H$~--- \emph{тарифную энтропию} предактового состояния в pointer-базисе \emph{акта}; $S(\rho)$, $S_{\mathrm{coh}}$ и $H$~--- в \emph{натах}:
 \begin{equation}
 H(\rho) = S_{\mathrm{coh}}(\rho).
 \end{equation}
@@ -139,7 +161,8 @@ N_{\mathrm{bit}}(\rho) = H(\rho) / \ln 2.
 
 При \emph{унитарной} дефазировке $S(\rho_{\mathrm{ptr}})$ не меняется, рост $S(\rho)$ подсистемы~--- убыль $S_{\mathrm{coh}}$ (\Sref{sec:pointer}); изолированная подсистема при унитарном $\pi/2$ не меняет $S(\rho)$ (чистое остаётся чистым), а обратимый цикл $\pi/2\to-\pi/2$ восстанавливает состояние; тариф $H$ не активируется. Тепло \emph{не} следует из роста $S(\rho)$ подсистемы и не сопровождает унитарное «шифрование» фазы pointer-базиса в корреляциях с окружением.
 
-\textbf{Постулат (Heat from Bit).} Проверяемая гипотеза работы (\Sref{sec:experiment}): при \emph{объективном} коллапсе с $H>0$ скачок тарифа отождествляется с термодинамической энтропией резервуара $S_{\mathrm{th}}=kH$ и теплом $\Delta Q=T\Delta S_{\mathrm{th}}=kT\Delta H$ в среде при температуре~$T$; pointer-исход зафиксирован необратимо. Среднее по актам
+\paragraph{Постулат (Heat from Bit).}
+Проверяемая гипотеза работы (\Sref{sec:experiment}): при \emph{объективном} коллапсе с $H>0$ скачок тарифа отождествляется с термодинамической энтропией резервуара $S_{\mathrm{th}}=kH$ и теплом $\Delta Q=T\Delta S_{\mathrm{th}}=kT\Delta H$ в среде при температуре~$T$; pointer-исход зафиксирован необратимо. Среднее по актам
 \begin{equation}
 \langle Q\rangle = kT\,H = kT\,C_r(\rho).
 \label{eq:tariff_mean}
@@ -230,7 +253,8 @@ H = 0;
 
 Быстрая рандомизация фазы не эквивалентна этому контролю, если значение $\phi$ объективно записано в локальном регистре модулятора и причинно входит в подготовку акта: условно на запись состояние остаётся чистым $|\psi(\phi)\rangle$ и $H=\ln2$. Если же контроллер фазы сам остаётся квантовым, его запись стёрта до акта или физически не входит в причинное состояние поглотителя, условливание запрещено и используется безусловное $I/2$ с $H=0$. Тем самым различие задаётся физическим регистром подготовки, а не выбором наблюдателя между эквивалентными разложениями одной $\rho$ (\Sref{sec:conditioning}).
 
-\textbf{Почему which-path, а не поляризация.} \Sref{sec:pointer} показывает тот же тариф на однофотонном $|{+}\rangle_{\mathrm{ptr}}$ в базисе поляризации; heralded MZ реализует эквивалентный $|{+}\rangle_{\mathrm{ptr}}$ в базисе локализации $|x_i\rangle$~--- удобнее для event-triggered калориметрии и контроля $I/2_{\mathrm{ptr}}$.
+\paragraph{Почему which-path, а не поляризация.}
+\Sref{sec:pointer} показывает тот же тариф на однофотонном $|{+}\rangle_{\mathrm{ptr}}$ в базисе поляризации; heralded MZ реализует эквивалентный $|{+}\rangle_{\mathrm{ptr}}$ в базисе локализации $|x_i\rangle$~--- удобнее для event-triggered калориметрии и контроля $I/2_{\mathrm{ptr}}$.
 
 \paragraph{Схема.}
 \begin{itemize}
@@ -266,7 +290,8 @@ $\Delta Q_{\mathrm{bit}} = kT\ln 2 \approx 1{,}8\times 10^{-2}$~эВ ($\sim 2{,}
 \item Линейность суммарного $\Delta Q$ по $R$ и по $T$; наклон $\Delta P/R \propto \eta\,kT\ln 2$.
 \item Lock-in-пик на $f_{\mathrm{mod}}$; отсутствие пика при постоянном $I/2_{\mathrm{ptr}}$.
 \end{enumerate}
-\textbf{Исходы.} Подтверждение: устойчивый дифференциал $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ при $R=10^{8}$~с$^{-1}$. Нуль при SNR $\gg 1$~$\Rightarrow$ bound на тариф $kT\ln 2$.
+\paragraph{Исходы.}
+Подтверждение: устойчивый дифференциал $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ при $R=10^{8}$~с$^{-1}$. Нуль при SNR $\gg 1$~$\Rightarrow$ bound на тариф $kT\ln 2$.
 
 \paragraph{Причинный тест с задержанной записью.}
 Правило~\eqref{eq:local_conditioned_tariff} допускает дополнительную проверку без сверхсветовой связи. Алиса измеряет свою половину пары Белла в $Z$- или $X$-базисе и передаёт Бобу классическое сообщение, содержащее \emph{и базис, и исход}. Если акт Боба происходит до физического прихода записи, локально доступно лишь $\rho_B=I/2$ и тариф равен нулю. После доставки одинакового по размеру регистра условные состояния равны $|0\rangle,|1\rangle$ для $Z$ ($H=0$) или $|+\rangle,|-\rangle$ для $X$ ($H=\ln2$). Дифференциал ``акт до/после записи'' проверяет зависимость от причинно доступной side-information; обычное тепло доставки и памяти должно сокращаться сравнением сообщений одинаковой энергии. Тот же тест можно реализовать локально коррелированным регистром, поэтому он проверяет правило обусловливания, а не квантовую нелокальность как таковую.
@@ -291,11 +316,14 @@ $\Delta Q_{\mathrm{bit}} = kT\ln 2 \approx 1{,}8\times 10^{-2}$~эВ ($\sim 2{,}
 \paragraph{Соотношение с существующими данными.}
 Опубликованного \emph{прямого} экспериментального bound на тариф по $T$ и постулат $Q_i=kT\ln(1/p_i)$ нет; ниже~--- почему смежные измерения модель не исключают и не дублируют предложенный тест (\Sref{sec:experiment}).
 
-\textbf{Оптика.} Однофотонная калориметрия на TES (Transition Edge Sensor; датчик на границе перехода)~\cite{karimi2020} разрешает энергию фотона 1550~нм до $\sim 0{,}1$--$1$~эВ, но при $T_{\mathrm{bath}}\sim 0{,}1$--$0{,}3$~K. При тарифе ``температура среды акта'' избыток $kT\ln 2$ при таком $T$ ($\sim 10^{-5}$~эВ на бит) на три--четыре порядка ниже разрешения TES. Холодные TES-данные \emph{не ограничивают} тариф по $T$; heralded-MZ тест (\Sref{sec:experiment}) с event-triggered калориметрией существующие однофотонные измерения не повторяет.
+\paragraph{Оптика.}
+Однофотонная калориметрия на TES (Transition Edge Sensor; датчик на границе перехода)~\cite{karimi2020} разрешает энергию фотона 1550~нм до $\sim 0{,}1$--$1$~эВ, но при $T_{\mathrm{bath}}\sim 0{,}1$--$0{,}3$~K. При тарифе ``температура среды акта'' избыток $kT\ln 2$ при таком $T$ ($\sim 10^{-5}$~эВ на бит) на три--четыре порядка ниже разрешения TES. Холодные TES-данные \emph{не ограничивают} тариф по $T$; heralded-MZ тест (\Sref{sec:experiment}) с event-triggered калориметрией существующие однофотонные измерения не повторяет.
 
-\textbf{Лазерная радиометрия.} Первичная шкала оптической мощности сравнивает тёплые тепловые детекторы с криогенными радиометрами электрического замещения ($T_{\mathrm{bath}}\sim 4$--$5$~K, тариф $kT\ln 2$ там $\sim 0{,}03\%$ от $E_{\gamma}$); согласие служб и типов детекторов~--- 0,02--1,2\%. Наивное чтение ``когерентный лазер $\Rightarrow$ лишние $\sim 2\%$ тепла при 300~K'' \emph{не} следует из модели: тариф платит не когерентность поля в базисе амплитуд, а суперпозицию \emph{в pointer-базисе акта} (\Sref{sec:pointer}) --- $|{+}\rangle_{\mathrm{ptr}}$ vs $I/2_{\mathrm{ptr}}$. Обычный измеритель мощности: один пучок, одно пятно, без делителя 50/50 и без контролируемой межзонной фазы; это не протокол $|{+}\rangle_{\mathrm{ptr}}$ из \Sref{sec:experiment} и не bound на тариф по $T$ для такого состояния. Предложенный heralded-MZ тест (\Sref{sec:experiment}) --- дифференциал $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ на однофотонных кубитах; радиометрия его не воспроизводила.
+\paragraph{Лазерная радиометрия.}
+Первичная шкала оптической мощности сравнивает тёплые тепловые детекторы с криогенными радиометрами электрического замещения ($T_{\mathrm{bath}}\sim 4$--$5$~K, тариф $kT\ln 2$ там $\sim 0{,}03\%$ от $E_{\gamma}$); согласие служб и типов детекторов~--- 0,02--1,2\%. Наивное чтение ``когерентный лазер $\Rightarrow$ лишние $\sim 2\%$ тепла при 300~K'' \emph{не} следует из модели: тариф платит не когерентность поля в базисе амплитуд, а суперпозицию \emph{в pointer-базисе акта} (\Sref{sec:pointer}) --- $|{+}\rangle_{\mathrm{ptr}}$ vs $I/2_{\mathrm{ptr}}$. Обычный измеритель мощности: один пучок, одно пятно, без делителя 50/50 и без контролируемой межзонной фазы; это не протокол $|{+}\rangle_{\mathrm{ptr}}$ из \Sref{sec:experiment} и не bound на тариф по $T$ для такого состояния. Предложенный heralded-MZ тест (\Sref{sec:experiment}) --- дифференциал $|{+}\rangle_{\mathrm{ptr}} - I/2_{\mathrm{ptr}}$ на однофотонных кубитах; радиометрия его не воспроизводила.
 
-\textbf{Bounds на нагрев моделей коллапса.} Опыты по GRW/CSL/DP~\cite{bassi2013,donadi2021} (холодные атомы, кантилеверы, подземные установки) ограничивают \emph{любой} лишний нагрев от спонтанной локализации~--- ``фоновый'' нагрев самой модели коллапса. Heat from Bit спрашивает другое: сколько тепла даёт \emph{необратимая фиксация pointer-исхода}, если перед актом была когерентность в pointer-базисе ($H>0$). Существующие bounds опровергли бы Heat from Bit только если в тех установках при каждом событии гибло много pointer-битов. Обычно этого не происходит: система либо уже классическая смесь ($H\approx 0$), либо ``большая'' суперпозиция не в том pointer-базисе, где считается тариф~--- тогда $H=0$ и дополнительный нагрев по Heat from Bit тоже $\approx 0$. Измеренный нулевой нагрев в GRW/CSL/DP-тестах модель при тарифе по $T$ не запрещает. В \Sref{sec:experiment} $H$ и число битов за акт делают большими намеренно.
+\paragraph{Bounds на нагрев моделей коллапса.}
+Опыты по GRW/CSL/DP~\cite{bassi2013,donadi2021} (холодные атомы, кантилеверы, подземные установки) ограничивают \emph{любой} лишний нагрев от спонтанной локализации~--- ``фоновый'' нагрев самой модели коллапса. Heat from Bit спрашивает другое: сколько тепла даёт \emph{необратимая фиксация pointer-исхода}, если перед актом была когерентность в pointer-базисе ($H>0$). Существующие bounds опровергли бы Heat from Bit только если в тех установках при каждом событии гибло много pointer-битов. Обычно этого не происходит: система либо уже классическая смесь ($H\approx 0$), либо ``большая'' суперпозиция не в том pointer-базисе, где считается тариф~--- тогда $H=0$ и дополнительный нагрев по Heat from Bit тоже $\approx 0$. Измеренный нулевой нагрев в GRW/CSL/DP-тестах модель при тарифе по $T$ не запрещает. В \Sref{sec:experiment} $H$ и число битов за акт делают большими намеренно.
 
 \paragraph{Сильный глобально обусловленный вариант.}
 Если вместо рабочего локального правила принять вариант~(iii) из \Sref{sec:conditioning}, измерение Алисы удалённо выбирает для Боба ансамбль $\{|0\rangle,|1\rangle\}$ или $\{|+\rangle,|-\rangle\}$ при одной и той же $\rho_B=I/2$. Тогда идеализированный тепловой дифференциал Боба совпадает с MZ-сигналом~\eqref{eq:signal_power}; при параметрах \Sref{sec:experiment} время $\tau=(\mathrm{NEP}/\Delta P)^2\approx83$~с означает лишь $\mathrm{SNR}\approx1$, а не надёжно переданный бит. Такой результат был бы управляемой сверхсветовой сигнализацией и потребовал бы отдельного глобального закона причинного порядка, например выделенного слоения. Это \emph{не} следствие нелинейности $C_r$ и не часть основной версии модели. Бомовская механика показывает возможность выделенного слоения при скрытой нелокальности, но сама не даёт управляемой сигнализации; релятивистская flash-модель rGRWf, напротив, построена без предпочтительного слоения~\cite{bohm1952,tumulka2006}. Поэтому эти теории служат сравнением, а не доказательством необходимости выбранной конструкции.
@@ -310,7 +338,7 @@ $\Delta Q_{\mathrm{bit}} = kT\ln 2 \approx 1{,}8\times 10^{-2}$~эВ ($\sim 2{,}
 Первое начало нарушается лишь локально, в суб-$\tau_{\mathrm{th}}$ акте неунитарной фиксации (\Sref{sec:origin}); глобально второе начало сохраняется~--- $\delta Q$ рассеивается в резервуаре с энтропией $k\Delta H$. По отдельному событию дисбаланс энергии ниже разрешения калориметра; heralded MZ измеряет систематический избыток по ансамблю (\Sref{sec:experiment}).
 
 \vspace{0.4em}
-\begin{samepage}
+\noindent\begin{minipage}{\textwidth}
 \noindent\refstepcounter{table}\label{tab:comparison}%
 {\centering
 \textbf{Таблица~\thetable.} Сравнение стандартной КМ, моделей GRW/CSL/DP и модели Heat from Bit.\par\vspace{0.25em}
@@ -339,8 +367,20 @@ $\Delta Q_{\mathrm{bit}} = kT\ln 2 \approx 1{,}8\times 10^{-2}$~эВ ($\sim 2{,}
 }
 }
 \par}
-\end{samepage}
+\end{minipage}
 \vspace{0.6em}
+
+\section*{Заявления и декларации}
+
+\noindent\textbf{Финансирование.} Работа выполнена без внешнего финансирования.
+
+\noindent\textbf{Конфликт интересов.} Автор заявляет об отсутствии конфликта интересов.
+
+\noindent\textbf{Вклад автора.} О.\,П. предложил модель, выполнил расчёты и написал рукопись.
+
+\noindent\textbf{Доступность данных.} Новых данных в работе нет.
+
+\noindent\textbf{Использование генеративного ИИ.} Текст подготовлен с помощью Claude (Anthropic): модель использовалась для написания черновика по тезисам и указаниям автора, для редактуры, подбора и проверки литературы и для перевода статьи на английский язык. Автор проверил текст и отвечает за его содержание.
 
 \bibliographystyle{unsrturl}
 \bibliography{refs}
@@ -417,7 +457,7 @@ $C_v \approx 0{,}55$~Дж/К, $\Delta T_{\mathrm{tot}}\approx 10$~K, $\Delta P_{
 \paragraph{Протоколы.}
 \textbf{A} (pay-per-loss): накачка $\to$ $\pi/2$ + crusher ($G$, $\tau$) $\to$ запись $P(t)$ и $A(t)$ 60~с. H1: $Q(t)=Q_{\mathrm{tot}}[1-e^{-Dk^2 t}]$; $\mathrm{d} Q/\mathrm{d} t \parallel -\mathrm{d} A/\mathrm{d} t$; $\tau_{\mathrm{irr}}$ масштабируется как $(G\tau)^{-2}$ при фиксированном $Q_{\mathrm{tot}}$. \textbf{B} (контроль унитарности): (i)~$\pi/2 \to$ задержка $\sim 100$~мкс $\to$ $-\pi/2$; (ii)~$\pi/2 \to G\tau \to -G\tau \to -\pi/2$ (gradient echo); H0/H1: $P(t)$ и $A(t)$ плоски. \textbf{C} (дифференциал по $k$): два прогона с $G\tau$ и $3G\tau$ при равном RF/Joule-депозите; тривиальный нагрев сокращается, $\tau_{\mathrm{irr}}$ сдвигается в $\sim 9$ раз. \textbf{D} (CPMG): CPMG с интервалом $t_{\mathrm{cp}}$ подавляет диффузию как $t_{\mathrm{cp}}^2$; $\mathrm{d} Q/\mathrm{d} t \propto$ эффективной скорости потери эха; разность ``crusher''$-$``CPMG$\to$crusher'' изолирует необратимую компоненту. \textbf{Ось $\varepsilon$}: $Q_{\mathrm{tot}}\propto H(\varepsilon)\approx \varepsilon^2/2$.
 
-\paragraph{Фоны.}
+\paragraph{Фоны.}\mbox{}\par
 \noindent
 {\small
 \setlength{\tabcolsep}{4pt}
@@ -486,7 +526,8 @@ N_{\mathrm{eff}} \le N_* \approx 409
 \item \textbf{Насыщение по фокусу}: при раздувании $w$ избыток \emph{не} растёт пропорционально площади сверх $kT\ln N_*$~--- ключевой тест потолка $N_*$.
 \item Линейность по $T$; материальный сдвиг через $r_{\mathrm{th}}$.
 \end{enumerate}
-\textbf{Исходы.} Подтверждение: избыток на упёртом в $N_*$ пятне; насыщение при расфокусе. Рост без насыщения~$\Rightarrow$ bound на $N_*$ или на модель; нуль при достаточной чувствительности~$\Rightarrow$ bound на $T$.
+\paragraph{Исходы.}
+Подтверждение: избыток на упёртом в $N_*$ пятне; насыщение при расфокусе. Рост без насыщения~$\Rightarrow$ bound на $N_*$ или на модель; нуль при достаточной чувствительности~$\Rightarrow$ bound на $T$.
 
 \section{Предел бит на акт коллапса}\label{app:bitcap}
 
@@ -517,7 +558,8 @@ N_{\mathrm{eff}} \le N_* \approx 409
 
 Подчеркнём статус конструкции. (i)~MSS и Марголус--Левитин ограничивают \emph{унитарную} эволюцию и хаос; перенос~\eqref{eq:mss} на скорость \emph{объективного} коллапса~--- дополнительная гипотеза, не следствие этих теорем. (ii)~Равенство в~\eqref{eq:tau_col_mss}--\eqref{eq:tau_bit} достигалось бы лишь при насыщении границы; работа требует только неравенств. (iii)~Heat from Bit проверяется калориметрией $\langle Q\rangle=kT H$ (\Sref{sec:experiment}), а не прямым измерением~$\tau_{\mathrm{bit}}$; неравенства задают масштаб, на котором стоит искать микроскопическую динамику фиксации pointer-исхода в рамках предела Планка--Марголуса--Левитина / MSS.
 
-\textbf{Окно для $\tau_{\mathrm{col}}$.} Собирая нижнюю границу MSS~\eqref{eq:tau_col_mss} и мандельштам--таммовскую оценку~\eqref{eq:tau_col} (она уже строже эвристики $\tau_{\mathrm{col}}\lesssim\tau_{\mathrm{th}}$ из начала~\Sref{sec:origin}, поскольку $1/(2\ln 2)<1$),
+\paragraph{Окно для $\tau_{\mathrm{col}}$.}
+Собирая нижнюю границу MSS~\eqref{eq:tau_col_mss} и мандельштам--таммовскую оценку~\eqref{eq:tau_col} (она уже строже эвристики $\tau_{\mathrm{col}}\lesssim\tau_{\mathrm{th}}$ из начала~\Sref{sec:origin}, поскольку $1/(2\ln 2)<1$),
 \begin{equation}
 \frac{\tau_{\mathrm{th}}}{2\pi}
 \le
@@ -535,7 +577,8 @@ N_{\mathrm{eff}} \le N_* \approx 409
 1{,}8\times10^{-14}~\text{с}.
 \]
 
-\textbf{Обобщение на тариф $H$.} Выше~--- случай одного бита ($H=\ln 2$). При объективном коллапсе с произвольным тарифом $H$ (\Sref{sec:thermo}; $H$ в натах) платёж $\delta Q=kT H$, и мандельштам--таммовское окно сжимается:
+\paragraph{Обобщение на тариф $H$.}
+Выше~--- случай одного бита ($H=\ln 2$). При объективном коллапсе с произвольным тарифом $H$ (\Sref{sec:thermo}; $H$ в натах) платёж $\delta Q=kT H$, и мандельштам--таммовское окно сжимается:
 \begin{equation}
 \tau_{\mathrm{col}} \lesssim \frac{\hbar}{2kT H}=\frac{\tau_{\mathrm{th}}}{2H}.
 \label{eq:tau_col_mt_H}
@@ -556,7 +599,8 @@ N_{\mathrm{eff}} \le N_* \approx 409
 \end{equation}
 Окно непустое лишь при $H\le\sqrt{\pi}$ (нат), то есть $\lesssim 2{,}6$~бит. При $H=\ln 2<1$ нижняя граница~\eqref{eq:tau_H} слабее~\eqref{eq:tau_col_mss}, и восстанавливается~\eqref{eq:tau_col_window}; при $H\gtrsim\sqrt{\pi}$ (например потолок Fock $H\sim\ln N_*$ в прил.~\ref{app:fock}) верх уже ниже MSS-низа по~\eqref{eq:tau_H}: либо акт не может одновременно накопить весь~$H$ при~\eqref{eq:mss} и вместить платёж в $\Delta E\sim\hbar/(2\tau_{\mathrm{col}})$, либо фиксация дробится / выходит за тепловой шаг~$\tau_{\mathrm{th}}$.
 
-\textbf{Физический смысл.} Граница $H\le\sqrt{\pi}$~--- не отдельный закон природы и не постулат Heat from Bit, а условие \emph{совместности} двух оценок для одного акта. Если коллапс (i)~не проталкивает больше $H$~нат когерентности быстрее теплового хаоса (MSS) и (ii)~весь тарифный платёж $kT H$ должен уместиться в допуск $\Delta E\sim\hbar/(2\tau_{\mathrm{col}})$, то за один такой акт нельзя уместить больше $\sqrt{\pi}$~нат ($\lesssim 2{,}6$~бит): иначе либо $\tau_{\mathrm{col}}$ слишком короток для накопления~$H$ при~\eqref{eq:mss}, либо $\Delta E$ акта меньше платежа. Это не запрет на большой~$H$ в модели вообще: при $H>\sqrt{\pi}$ ломается именно связка ``весь~$H$ за один MSS-ограниченный акт из~$\Delta E\sim\hbar/(2\tau)$''; обходы~--- более длинный акт, иной источник энергии платежа, дробление фиксации на шаги с меньшими~$H_i$.
+\paragraph{Физический смысл.}
+Граница $H\le\sqrt{\pi}$~--- не отдельный закон природы и не постулат Heat from Bit, а условие \emph{совместности} двух оценок для одного акта. Если коллапс (i)~не проталкивает больше $H$~нат когерентности быстрее теплового хаоса (MSS) и (ii)~весь тарифный платёж $kT H$ должен уместиться в допуск $\Delta E\sim\hbar/(2\tau_{\mathrm{col}})$, то за один такой акт нельзя уместить больше $\sqrt{\pi}$~нат ($\lesssim 2{,}6$~бит): иначе либо $\tau_{\mathrm{col}}$ слишком короток для накопления~$H$ при~\eqref{eq:mss}, либо $\Delta E$ акта меньше платежа. Это не запрет на большой~$H$ в модели вообще: при $H>\sqrt{\pi}$ ломается именно связка ``весь~$H$ за один MSS-ограниченный акт из~$\Delta E\sim\hbar/(2\tau)$''; обходы~--- более длинный акт, иной источник энергии платежа, дробление фиксации на шаги с меньшими~$H_i$.
 
 \section{Время декогеренции при запутывании с тепловой средой (BDPT)}\label{app:bdpt}
 
@@ -580,7 +624,8 @@ t_{\mathrm{dec}}(M)=\frac{t_C(M)^3}{\xi\,t_P^2}, \qquad t_C(M)\equiv\frac{\hbar}
 \end{equation}
 При $M=m_e$ (или $m_*$) $t_{\mathrm{dec}}\gg\tau_{\mathrm{th}}$: одного электронного приёмника недостаточно для BDPT-дефазировки за лабораторное окно.
 
-\textbf{Критическая масса.} Условие $t_{\mathrm{dec}}(M)<\tau_{\mathrm{th}}$ (BDPT-шаг быстрее теплового) задаёт порог
+\paragraph{Критическая масса.}
+Условие $t_{\mathrm{dec}}(M)<\tau_{\mathrm{th}}$ (BDPT-шаг быстрее теплового) задаёт порог
 \begin{equation}
 M > M_{\mathrm{crit}} \equiv \frac{\hbar}{c^2\,\bigl(\xi\,t_P^2\,\tau_{\mathrm{th}}\bigr)^{1/3}}
 = \Bigl(\frac{\hbar^3}{\xi\,t_P^2\,\tau_{\mathrm{th}}\,c^6}\Bigr)^{\!1/3},
@@ -588,7 +633,8 @@ M > M_{\mathrm{crit}} \equiv \frac{\hbar}{c^2\,\bigl(\xi\,t_P^2\,\tau_{\mathrm{t
 \end{equation}
 полученный из~\eqref{eq:tdec_M} при $t_{\mathrm{dec}}(M_{\mathrm{crit}})=\tau_{\mathrm{th}}$. При $\xi=1$, $t_P=\sqrt{\hbar G/c^5}$ и $T=300$~K ($\tau_{\mathrm{th}}\approx2{,}5\times10^{-14}$~с): $M_{\mathrm{crit}}\approx2{,}8\times10^{-18}$~кг; при $T=77$~K: $\approx1{,}8\times10^{-18}$~кг; при $T=4$~K: $\approx6{,}6\times10^{-19}$~кг. Для произвольного $\xi$ все значения умножаются на $\xi^{-1/3}$. Так как $m_0\sim m_e\ll M_{\mathrm{crit}}$, на первом шаге BDPT не успевает; $M_{\mathrm{crit}}$ набирается каскадом~\eqref{eq:m_cascade}. В heralded MZ (\Sref{sec:experiment}) $M_{\mathrm{isl}}\sim10^{-18}$~кг при $T=300$~K находится в том же порядке величины, что $M_{\mathrm{crit}}$; при $M_{\mathrm{isl}}\gtrsim10^{-15}$~кг $t_{\mathrm{dec}}\ll\tau_{\mathrm{th}}$ уже при $\xi=\mathcal{O}(1)$.
 
-\textbf{Каскад и наращивание массы.} Следующий ``приёмник'' pointer-информации (фонон, атом термализационного фронта) подключается за время порядка $\tau_{\mathrm{join}}\sim\tau_{\mathrm{th}}=\hbar/kT$. Пока $t<t_{\mathrm{dec}}(M_{\mathrm{eff}}^{(n)})$, which-path-суперпозиция ещё не BDPT-дефазирована; если $\tau_{\mathrm{join}}<t_{\mathrm{dec}}(M_{\mathrm{eff}}^{(n)})$, до подключения следующего приёмника масса успевает вырасти:
+\paragraph{Каскад и наращивание массы.}
+Следующий ``приёмник'' pointer-информации (фонон, атом термализационного фронта) подключается за время порядка $\tau_{\mathrm{join}}\sim\tau_{\mathrm{th}}=\hbar/kT$. Пока $t<t_{\mathrm{dec}}(M_{\mathrm{eff}}^{(n)})$, which-path-суперпозиция ещё не BDPT-дефазирована; если $\tau_{\mathrm{join}}<t_{\mathrm{dec}}(M_{\mathrm{eff}}^{(n)})$, до подключения следующего приёмника масса успевает вырасти:
 \begin{equation}
 M_{\mathrm{eff}}^{(n+1)} = M_{\mathrm{eff}}^{(n)} + m_{\mathrm{rec}},
 \qquad m_{\mathrm{rec}}\sim m_{\mathrm{at}},
@@ -596,14 +642,16 @@ M_{\mathrm{eff}}^{(n+1)} = M_{\mathrm{eff}}^{(n)} + m_{\mathrm{rec}},
 \end{equation}
 где $m_{\mathrm{at}}$~--- масса атома/ионной ячейки поглотителя (Ge, InGaAs и т.п.). Каждый шаг укорачивает $t_{\mathrm{dec}}\propto M_{\mathrm{eff}}^{-3}$. Каскад продолжается, пока $M_{\mathrm{eff}}<M_{\mathrm{crit}}$ и $\tau_{\mathrm{join}}<t_{\mathrm{dec}}(M_{\mathrm{eff}}^{(n)})$; далее $t_{\mathrm{dec}}(M_{\mathrm{eff}})\lesssim\tau_{\mathrm{th}}$ или $M_{\mathrm{eff}}\to M_{\mathrm{isl}}$.
 
-\textbf{Тепловая среда.} Параллельно действует \emph{средовой} канал~\cite{ponfilenok2026branch,hornberger2004tli}: запутывание с тепловыми модами резервуара на масштабе~$kT$ (газ, тепловое излучение, рассеяние) не входит в онтический канал $\delta t_a,\delta t_b$ BDPT, но рандомизирует фазу path-суперпозиции за
+\paragraph{Тепловая среда.}
+Параллельно действует \emph{средовой} канал~\cite{ponfilenok2026branch,hornberger2004tli}: запутывание с тепловыми модами резервуара на масштабе~$kT$ (газ, тепловое излучение, рассеяние) не входит в онтический канал $\delta t_a,\delta t_b$ BDPT, но рандомизирует фазу path-суперпозиции за
 \begin{equation}
 \tau_{\mathrm{dec}}^{(\mathrm{env})}\sim\tau_{\mathrm{th}}=\frac{\hbar}{kT}\approx 2{,}5\times10^{-14}~\text{с при }T=300~\text{K}.
 \label{eq:tdec_env}
 \end{equation}
 При $T=77$~K $\tau_{\mathrm{dec}}^{(\mathrm{env})}\approx10^{-13}$~с; при $T=4$~K $\approx2\times10^{-12}$~с. Унитарное запутывание за $\tau_{\mathrm{dec}}^{(\mathrm{env})}$ и BDPT-дефазировка по нарастающему $M_{\mathrm{eff}}$ не активируют тариф (\Sref{sec:thermo}) и не суть объективного коллапса.
 
-\textbf{Полное время декогеренции.} Различаем три масштаба. (i)~Мгновенное BDPT-время при фиксированной массе~$M$~--- формула~\eqref{eq:tdec_M}; это не полное время акта, а дефазировка при текущей~$M_{\mathrm{eff}}$. (ii)~Средовой канал~\eqref{eq:tdec_env}: фаза path-суперпозиции рандомизируется за один тепловой шаг~$\tau_{\mathrm{th}}$. (iii)~Время до BDPT-порога: каскад~\eqref{eq:m_cascade} должен набрать $M_{\mathrm{eff}}\gtrsim M_{\mathrm{crit}}$; наивно при $m_{\mathrm{rec}}\sim m_{\mathrm{at}}$ за каждый $\tau_{\mathrm{join}}\sim\tau_{\mathrm{th}}$
+\paragraph{Полное время декогеренции.}
+Различаем три масштаба. (i)~Мгновенное BDPT-время при фиксированной массе~$M$~--- формула~\eqref{eq:tdec_M}; это не полное время акта, а дефазировка при текущей~$M_{\mathrm{eff}}$. (ii)~Средовой канал~\eqref{eq:tdec_env}: фаза path-суперпозиции рандомизируется за один тепловой шаг~$\tau_{\mathrm{th}}$. (iii)~Время до BDPT-порога: каскад~\eqref{eq:m_cascade} должен набрать $M_{\mathrm{eff}}\gtrsim M_{\mathrm{crit}}$; наивно при $m_{\mathrm{rec}}\sim m_{\mathrm{at}}$ за каждый $\tau_{\mathrm{join}}\sim\tau_{\mathrm{th}}$
 \begin{equation}
 t_{\mathrm{cascade}}\sim\frac{M_{\mathrm{crit}}}{m_{\mathrm{at}}}\,\tau_{\mathrm{th}}\sim10^{-6}~\text{с}
 \quad(T=300~\text{K},\; m_{\mathrm{at}}\sim m_{\mathrm{Ge}}),
@@ -615,7 +663,8 @@ t_{\mathrm{dec}}^{(\mathrm{tot})}\sim\tau_{\mathrm{dec}}^{(\mathrm{env})}\sim\ta
 \label{eq:tdec_tot}
 \end{equation}
 
-\textbf{Глубина скремблирования против ширины записи.} Здесь два последовательных этапа, а не одно и то же. (i)~\emph{Запись} (дарвинизм~\cite{zurek2009}): каскад запутывает $N_{\mathrm{part}}$ приёмников; каждый хранит копию одного which-path-бита (состояние GHZ-типа). Ширина записи~--- $N_{\mathrm{part}}$; сложность распутывания на этом этапе линейна, $C_{\mathrm{copy}}\sim N_{\mathrm{part}}$, а не $2^{N_{\mathrm{part}}}$. Даже при $N_{\mathrm{part}}\sim2\times10^{7}$ (масса~$M_{\mathrm{crit}}$) имеем $C_{\mathrm{copy}}\ll C_c$: одной ширины для порога объективности~\cite{ponfilenok2026threshold} недостаточно. (ii)~\emph{Скремблирование}: после записи хаотическая фононная динамика (столкновения, ангармонизм) перемешивает копии; столкновение на частицу~--- раз в~$\sim\tau_{\mathrm{th}}$. Невосстановимое ядро растёт со временем:
+\paragraph{Глубина скремблирования против ширины записи.}
+Здесь два последовательных этапа, а не одно и то же. (i)~\emph{Запись} (дарвинизм~\cite{zurek2009}): каскад запутывает $N_{\mathrm{part}}$ приёмников; каждый хранит копию одного which-path-бита (состояние GHZ-типа). Ширина записи~--- $N_{\mathrm{part}}$; сложность распутывания на этом этапе линейна, $C_{\mathrm{copy}}\sim N_{\mathrm{part}}$, а не $2^{N_{\mathrm{part}}}$. Даже при $N_{\mathrm{part}}\sim2\times10^{7}$ (масса~$M_{\mathrm{crit}}$) имеем $C_{\mathrm{copy}}\ll C_c$: одной ширины для порога объективности~\cite{ponfilenok2026threshold} недостаточно. (ii)~\emph{Скремблирование}: после записи хаотическая фононная динамика (столкновения, ангармонизм) перемешивает копии; столкновение на частицу~--- раз в~$\sim\tau_{\mathrm{th}}$. Невосстановимое ядро растёт со временем:
 \begin{equation}
 N_{\mathrm{scr}}(t)\sim\min\Bigl(N_{\mathrm{part}}(t),\;\bigl(t/\tau_{\mathrm{th}}\bigr)^3\Bigr),
 \qquad
@@ -638,6 +687,7 @@ N_{\mathrm{part}}, & N_{\mathrm{scr}}\ll N_{\mathrm{part}}\ \text{(ещё коп
 \end{equation}
 скорость растёт с уже перемешанным объёмом ($\propto N_{\mathrm{scr}}^{2/3}$), пока фронт не охватит всю запись. (d)~Время \emph{полного} скремблирования уже записанных $N_{\mathrm{part}}$ частиц (быстрый скремблер / random circuit) $t_*\sim\tau_{\mathrm{th}}\ln N_{\mathrm{part}}$~--- логарифмически зависит от числа частиц; при $N_{\mathrm{part}}\sim2\times10^{7}$ и $T=300$~K это $t_*\sim4\times10^{-13}$~с. После перемешивания ядра $C_{\mathrm{eff}}\sim2^{N_{\mathrm{scr}}}$. При $t\sim\tau_{\mathrm{th}}$: $N_{\mathrm{scr}}\sim1$, ещё этап~(i). Порог $C_c\sim10^{123}$ требует этапа~(ii) с $N_{\mathrm{scr}}\sim\log_2 C_c\sim4\times10^{2}$; по~\eqref{eq:scr_rate} это $t\sim(4\times10^{2})^{1/3}\,\tau_{\mathrm{th}}\sim7\,\tau_{\mathrm{th}}\sim2\times10^{-13}$~с, а с запасом на неполноту фронта~--- $t_{\mathrm{obj}}\sim10^{-12}$--$10^{-11}$~с (прил.~\ref{app:fock}). К наивному $t_{\mathrm{cascade}}\sim10^{-6}$~с (набор~$M_{\mathrm{crit}}$) этап~(ii) давно пройден: срабатывает не ``$2^{N_{\mathrm{part}}}$ сразу'', а рост $N_{\mathrm{scr}}(t)$ до~$\sim4\times10^{2}$ при уже достаточном $N_{\mathrm{part}}$.
 
-\textbf{Связь с $\tau_{\mathrm{col}}$.} Доминирует шаг~\eqref{eq:tdec_env} и/или каскад~\eqref{eq:m_cascade} при $M_{\mathrm{eff}}\to M_{\mathrm{isl}}$; неунитарная фиксация pointer-исхода должна завершиться за $\tau_{\mathrm{col}}\lesssim\tau_{\mathrm{th}}$~--- до подключения следующего ``приёмника'' (см. выше).
+\paragraph{Связь с $\tau_{\mathrm{col}}$.}
+Доминирует шаг~\eqref{eq:tdec_env} и/или каскад~\eqref{eq:m_cascade} при $M_{\mathrm{eff}}\to M_{\mathrm{isl}}$; неунитарная фиксация pointer-исхода должна завершиться за $\tau_{\mathrm{col}}\lesssim\tau_{\mathrm{th}}$~--- до подключения следующего ``приёмника'' (см. выше).
 
 \end{document}

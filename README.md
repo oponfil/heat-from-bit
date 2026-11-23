@@ -7,7 +7,7 @@ Manuscript proposing that any mechanism of **objective collapse** must pay a the
 | Language | Source | PDF | Notes |
 |----------|--------|-----|-------|
 | English | [`heat_from_bit_en.tex`](heat_from_bit_en.tex) | [`heat_from_bit_en.pdf`](heat_from_bit_en.pdf) | 7 sections + Declarations |
-| Russian | [`heat_from_bit_ru.tex`](heat_from_bit_ru.tex) | [`heat_from_bit_ru.pdf`](heat_from_bit_ru.pdf) | 7 sections + Declarations |
+| Russian | [`heat_from_bit_ru.tex`](heat_from_bit_ru.tex) | [`heat_from_bit_ru.pdf`](heat_from_bit_ru.pdf) | 7 sections + Declarations + 5 appendices |
 
 ## Summary
 
@@ -30,7 +30,7 @@ The work asks about the **thermodynamic price** of objective collapse—not abou
 6. Experimental proposal (heralded MZ)  
 7. Discussion  
 
-Declarations follow the main text.
+Declarations follow the main text. The Russian version also has five appendices: temperature; calorimetry of nuclear-coherence objectification ($^{129}$Xe); Fock state and the ceiling $N_*$; bit limit per collapse act; decoherence time under entanglement with a thermal environment (BDPT).
 
 ## Repository layout
 
@@ -40,24 +40,25 @@ heat_from_bit_en.pdf   # Compiled English PDF
 heat_from_bit_ru.tex   # Russian manuscript (LaTeX source)
 heat_from_bit_ru.pdf   # Compiled Russian PDF
 refs.bib               # Shared bibliography
-build.ps1              # Build script (pdflatex + bibtex)
+build.ps1              # Windows build script (pdflatex + bibtex)
 ```
 
 ## Building the PDF
 
-Requires a TeX distribution with `pdflatex` and `bibtex` (e.g. [TeX Live](https://www.tug.org/texlive/) or [MiKTeX](https://miktex.org/)).
+On macOS, build with [Tectonic](https://tectonic-typesetting.github.io/), which runs all passes and BibTeX itself:
 
-Build both versions:
+```bash
+tectonic heat_from_bit_en.tex
+tectonic heat_from_bit_ru.tex
+```
+
+The Russian version is typeset in Avenir Next (a macOS system font) and needs XeTeX, i.e. Tectonic or `xelatex`. Under `pdflatex` it falls back to Comfortaa.
+
+On Windows, with a TeX distribution that has `pdflatex` and `bibtex` (e.g. [TeX Live](https://www.tug.org/texlive/) or [MiKTeX](https://miktex.org/)):
 
 ```powershell
 .\build.ps1
-```
-
-Build one version:
-
-```powershell
 .\build.ps1 -Targets @("heat_from_bit_en")
-.\build.ps1 -Targets @("heat_from_bit_ru")
 ```
 
 Build artifacts (`.aux`, `.log`, `.bbl`, etc.) are listed in [`.gitignore`](.gitignore).
