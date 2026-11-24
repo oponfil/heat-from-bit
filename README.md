@@ -30,7 +30,7 @@ The work asks about the **thermodynamic price** of objective collapse—not abou
 6. Experimental proposal (heralded MZ)  
 7. Discussion  
 
-Declarations follow the main text. The Russian version also has five appendices: temperature; calorimetry of nuclear-coherence objectification ($^{129}$Xe); Fock state and the ceiling $N_*$; bit limit per collapse act; decoherence time under entanglement with a thermal environment (BDPT).
+Declarations follow the main text. The Russian version also has five appendices: temperature; bit limit per collapse act; decoherence time under entanglement with a thermal environment (BDPT); Fock state and the ceiling $N_*$; calorimetry of the collapse of nuclear coherence ($^{129}$Xe).
 
 ## Repository layout
 
