@@ -30,7 +30,7 @@ The work asks about the **thermodynamic price** of objective collapse—not abou
 6. Experimental proposal (heralded MZ)  
 7. Discussion  
 
-Declarations follow the main text. The Russian version also has two appendices: decoherence time under entanglement with a thermal environment (BDPT); calorimetry of the collapse of nuclear coherence ($^{129}$Xe).
+Declarations follow the main text. The Russian version also has two appendices: dephasing and the moment of collapse on photon absorption; calorimetry of the collapse of nuclear coherence ($^{129}$Xe).
 
 ## Repository layout
 
