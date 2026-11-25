@@ -7,7 +7,7 @@ Manuscript proposing that any mechanism of **objective collapse** must pay a the
 | Language | Source | PDF | Notes |
 |----------|--------|-----|-------|
 | English | [`heat_from_bit_en.tex`](heat_from_bit_en.tex) | [`heat_from_bit_en.pdf`](heat_from_bit_en.pdf) | 7 sections + Declarations |
-| Russian | [`heat_from_bit_ru.tex`](heat_from_bit_ru.tex) | [`heat_from_bit_ru.pdf`](heat_from_bit_ru.pdf) | 7 sections + Declarations + 4 appendices |
+| Russian | [`heat_from_bit_ru.tex`](heat_from_bit_ru.tex) | [`heat_from_bit_ru.pdf`](heat_from_bit_ru.pdf) | 7 sections + Declarations + 2 appendices |
 
 ## Summary
 
@@ -30,7 +30,7 @@ The work asks about the **thermodynamic price** of objective collapse—not abou
 6. Experimental proposal (heralded MZ)  
 7. Discussion  
 
-Declarations follow the main text. The Russian version also has four appendices: temperature; bit limit per collapse act; decoherence time under entanglement with a thermal environment (BDPT); calorimetry of the collapse of nuclear coherence ($^{129}$Xe).
+Declarations follow the main text. The Russian version also has two appendices: decoherence time under entanglement with a thermal environment (BDPT); calorimetry of the collapse of nuclear coherence ($^{129}$Xe).
 
 ## Repository layout
 
